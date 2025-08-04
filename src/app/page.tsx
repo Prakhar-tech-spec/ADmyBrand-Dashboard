@@ -25,7 +25,7 @@ export default function DashboardPage() {
             <BalanceCard />
             <ContactsCard />
             <BalanceCard title="Conversions" />
-            <ContactsCard />
+            <ContactsCard title="Users" />
           </div>
         </div>
         <div className="lg:col-span-1">

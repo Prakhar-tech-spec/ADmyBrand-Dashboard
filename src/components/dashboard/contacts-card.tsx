@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ChevronRight, Plus, Pencil } from 'lucide-react';
@@ -20,14 +21,18 @@ const contacts = [
   { name: 'User 5', hint: 'man glasses' },
 ];
 
-export function ContactsCard() {
+type ContactsCardProps = {
+  title?: string;
+};
+
+export function ContactsCard({ title = 'Recent Contacts' }: ContactsCardProps) {
   return (
     <Card className="h-full shadow-sm rounded-3xl">
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
           <div className='flex flex-col'>
             <CardTitle className="text-base font-semibold text-foreground/90">
-                Recent Contacts
+                {title}
             </CardTitle>
             <CardDescription>Send or Request from your contact list</CardDescription>
           </div>
