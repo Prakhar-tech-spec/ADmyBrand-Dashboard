@@ -16,7 +16,7 @@ export function Header() {
       </div>
 
       {/* Laptop view */}
-      <div className="hidden lg:flex flex-col">
+      <div className="hidden lg:flex items-baseline gap-2">
         <span className="text-2xl font-semibold text-primary">You're back!</span>
         <span className="text-base text-muted-foreground">Let’s go.</span>
       </div>
