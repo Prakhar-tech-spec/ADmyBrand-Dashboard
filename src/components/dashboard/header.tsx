@@ -2,6 +2,8 @@
 'use client';
 
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Bell } from 'lucide-react';
 
 type HeaderProps = {
   title?: string;
@@ -26,6 +28,11 @@ export function Header({
         <span className="text-2xl font-semibold text-primary">{title}</span>
         <span className="text-base text-muted-foreground">{subtitle}</span>
       </div>
+
+      <Button variant="ghost" size="icon" className="text-muted-foreground">
+        <Bell className="h-6 w-6" />
+        <span className="sr-only">Notifications</span>
+      </Button>
     </header>
   );
 }
