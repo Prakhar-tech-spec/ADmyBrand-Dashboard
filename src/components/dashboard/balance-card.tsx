@@ -33,8 +33,8 @@ const currencyIcons: { [key: string]: React.ComponentType<{ className?: string }
 
 const currencyData = {
     usd: { symbol: '$', rate: 1, name: 'USD' },
-    eur: { symbol: '€', rate: 0.93, name: 'EUR' },
-    inr: { symbol: '₹', rate: 83.54, name: 'INR' },
+    eur: { symbol: '€', rate: 0.86, name: 'EUR' },
+    inr: { symbol: '₹', rate: 87.61, name: 'INR' },
 };
 
 const baseUsdAmount = 18248.44;
@@ -93,7 +93,7 @@ export function BalanceCard({ title = "Revenue", showDropdown = false }: Balance
         <Card className='rounded-2xl'>
             <CardContent className='p-6'>
                 <div className="text-sm text-secondary-foreground">Available Funds</div>
-                <div className="text-4xl font-bold text-primary mt-1">
+                <div className="text-4xl font-bold text-primary mt-1 font-numbers">
                     {formattedBalance.symbol}{formattedBalance.integer}<span className='text-muted-foreground'>.{formattedBalance.decimal}</span>
                 </div>
             </CardContent>
