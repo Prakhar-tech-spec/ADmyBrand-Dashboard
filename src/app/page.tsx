@@ -12,9 +12,9 @@ import { cn } from '@/lib/utils';
 
 export default function DashboardPage() {
   return (
-    <div className="flex min-h-screen w-full bg-background font-sans">
+    <div className="flex min-h-screen w-full bg-primary font-sans">
       <Sidebar />
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col bg-background rounded-l-3xl">
         <Header />
         <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
           <div className="grid grid-cols-12 gap-6">

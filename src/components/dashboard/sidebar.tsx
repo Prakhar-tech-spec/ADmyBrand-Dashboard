@@ -71,28 +71,13 @@ export function Sidebar() {
             Add a section
         </Button>
       </nav>
-      <div className="space-y-4">
-        <Card className="bg-primary-foreground/5 border-primary-foreground/20 text-primary-foreground rounded-2xl">
-            <CardContent className="p-4 flex flex-col items-center text-center">
-                <div className='relative'>
-                    <RadialChart className="w-16 h-16" progress={40} />
-                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-sm font-semibold">40%</span>
-                </div>
-                <p className="text-sm font-semibold mt-2">Complete profile</p>
-                <p className="text-xs text-gray-400 mt-1">Complete your profile to unlock all features</p>
-                <Button size="sm" className="w-full mt-3 bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold rounded-lg">Verify Identity</Button>
-            </CardContent>
-        </Card>
-        <div className="flex items-center justify-between p-2">
+      <div className="space-y-4 p-2">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10">
               <AvatarImage src="https://placehold.co/40x40.png" alt="Robert Doe" data-ai-hint="man portrait"/>
               <AvatarFallback>RD</AvatarFallback>
             </Avatar>
-            <div>
-              <p className="text-sm font-semibold">Robert Doe</p>
-              <p className="text-xs text-gray-400">rob.doe@brisk.com</p>
-            </div>
           </div>
           <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-foreground">
             <Settings className="h-5 w-5" />
