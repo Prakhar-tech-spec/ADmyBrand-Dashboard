@@ -43,7 +43,7 @@ const menuItems = [
 
 export default function DashboardPage() {
   return (
-    <div className="flex h-screen w-full bg-primary font-sans">
+    <div className="flex h-screen w-full bg-background lg:bg-primary font-sans">
       <SidebarProvider>
         <div className="hidden lg:flex">
           <Sidebar />
