@@ -32,7 +32,7 @@ export default function DashboardPage() {
           <NotesCard />
         </div>
 
-        <div className="col-span-1 md:col-span-1 lg:col-span-2 xl:col-span-3 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="col-span-1 md:col-span-1 lg:col-span-2 xl:col-span-3 grid grid-cols-1 xl:grid-cols-3 gap-6">
           <ExpensesChart />
           <IncomeChart />
           <IncomeExpenseDonutChart income={totalIncome} expenses={totalExpenses} />
