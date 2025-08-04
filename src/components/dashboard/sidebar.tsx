@@ -51,7 +51,7 @@ export function Sidebar() {
             key={item.name}
             href={item.href}
             className={cn(
-              'flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium',
+              'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium',
               index === 0
                 ? 'bg-primary-foreground/10 text-primary-foreground'
                 : 'text-gray-300 hover:bg-primary-foreground/10'
@@ -66,7 +66,7 @@ export function Sidebar() {
             {item.name}
           </Link>
         ))}
-        <div className="pt-2">
+        <div className="pt-1">
             <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start h-12 border-dashed border-2 border-primary-foreground/20">
                 <div className="p-1.5 rounded-lg bg-primary-foreground/10">
                     <GridIcon className='h-5 w-5' />
@@ -79,8 +79,8 @@ export function Sidebar() {
         <Card className="bg-primary-foreground/10 border-none rounded-2xl">
           <CardContent className="p-4">
             <div className="flex items-center justify-between text-primary-foreground">
-              <span className="text-sm font-medium">Complete profile</span>
-              <span className="text-sm font-bold">40%</span>
+              <span className="text-sm font-medium text-primary-foreground">Complete profile</span>
+              <span className="text-sm font-bold text-primary-foreground">40%</span>
             </div>
             <p className="text-xs text-primary-foreground/60 mt-1 mb-3">
               Complete your profile to unlock all features
