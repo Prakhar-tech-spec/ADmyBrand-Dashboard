@@ -78,7 +78,7 @@ export function Sidebar() {
       <div className="mt-auto flex flex-col gap-4">
         <Card className="bg-primary-foreground/10 border-none rounded-2xl">
           <CardContent className="p-4">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between text-primary-foreground">
               <span className="text-sm font-medium">Complete profile</span>
               <span className="text-sm font-bold">40%</span>
             </div>
