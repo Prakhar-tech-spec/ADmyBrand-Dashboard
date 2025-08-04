@@ -5,12 +5,15 @@ import { BalanceCard } from '@/components/dashboard/balance-card';
 import { NotesCard } from '@/components/dashboard/notes-card';
 import { ExpensesChart } from '@/components/dashboard/expenses-chart';
 import { IncomeChart } from '@/components/dashboard/income-chart';
-import { ExchangeCard } from '@/components/dashboard/exchange-card';
+import { IncomeExpenseDonutChart } from '@/components/dashboard/income-expense-donut-chart';
 import { ChartContainer } from '@/components/ui/chart';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { GrowthCard } from '@/components/dashboard/growth-card';
 
 export default function DashboardPage() {
+  const totalIncome = 98248.44;
+  const totalExpenses = 72421.84;
+
   return (
     <DashboardLayout
       title="You're back!"
@@ -51,7 +54,7 @@ export default function DashboardPage() {
         >
           <IncomeChart />
         </ChartContainer>
-        <ExchangeCard />
+        <IncomeExpenseDonutChart income={totalIncome} expenses={totalExpenses} />
       </div>
     </DashboardLayout>
   );
