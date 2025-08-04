@@ -34,7 +34,7 @@ export function Sidebar() {
       <nav className="flex-1 flex flex-col gap-4 px-2 pt-4">
         <Card className="bg-gradient-to-b from-sidebar-card-start to-sidebar-card-end border-none rounded-3xl flex flex-col">
             <div className="flex h-14 flex-shrink-0 items-center justify-between px-4">
-                <Link href="#" className="flex items-center text-xl font-semibold text-primary-foreground">
+                <Link href="/" className="flex items-center text-xl font-semibold text-primary-foreground">
                 
                 <span className='text-2xl'>ADmyBRAND</span>
                 </Link>

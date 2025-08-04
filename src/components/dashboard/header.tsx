@@ -36,7 +36,7 @@ export function Header({
     <header className="flex h-24 items-center justify-between px-4 md:px-6 lg:px-8 pt-8">
       {/* Mobile and Tablet view */}
       <div className="flex items-center gap-2 lg:hidden">
-        <Link href="#" className="flex items-center text-xl font-semibold text-primary">
+        <Link href="/" className="flex items-center text-xl font-semibold text-primary">
           <span className="text-2xl">ADmyBRAND</span>
         </Link>
       </div>
