@@ -33,8 +33,8 @@ const currencyIcons: { [key: string]: React.ComponentType<{ className?: string }
 
 const currencyData = {
     usd: { symbol: '$', rate: 1, name: 'USD' },
-    eur: { symbol: '€', rate: 0.92, name: 'EUR' },
-    inr: { symbol: '₹', rate: 83.50, name: 'INR' },
+    eur: { symbol: '€', rate: 0.93, name: 'EUR' },
+    inr: { symbol: '₹', rate: 83.54, name: 'INR' },
 };
 
 const baseUsdAmount = 18248.44;
