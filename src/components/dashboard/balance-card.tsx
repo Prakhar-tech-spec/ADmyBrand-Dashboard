@@ -29,7 +29,7 @@ export function BalanceCard() {
         <div className="flex items-start justify-between">
             <div>
                 <CardTitle className="text-base font-semibold text-primary-foreground">
-                    Total Balance
+                    Revenue
                 </CardTitle>
                 <CardDescription className='text-primary-foreground/70'>Available for use</CardDescription>
             </div>
