@@ -36,7 +36,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="lg:w-64 flex-col bg-primary text-primary-foreground h-full w-full flex py-2">
+    <aside className="lg:w-72 flex-col bg-primary text-primary-foreground h-full w-full flex py-2">
       <nav className="flex-1 flex flex-col gap-4 px-2">
         <Card className="bg-gradient-to-b from-sidebar-card-start to-sidebar-card-end border-none rounded-3xl flex flex-col">
             <div className="flex h-16 flex-shrink-0 items-center justify-between px-4">
@@ -56,7 +56,7 @@ export function Sidebar() {
                 className={cn(
                   'flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium',
                   index === 0
-                    ? 'bg-primary-foreground/10 text-primary-foreground'
+                    ? 'bg-gradient-to-r from-[rgba(255,255,255,0.2)] to-[rgba(255,255,255,0.05)] text-primary-foreground'
                     : 'text-gray-300 hover:bg-primary-foreground/10'
                 )}
               >
