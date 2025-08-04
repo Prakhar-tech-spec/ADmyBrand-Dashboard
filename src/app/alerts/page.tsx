@@ -1,6 +1,8 @@
 
 'use client';
 
+import { useState, useMemo } from 'react';
+import { DateRange } from 'react-day-picker';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { AlertsTable } from '@/components/alerts/alerts-table';
 import { Alert } from '@/components/alerts/columns';
@@ -329,13 +331,40 @@ const alertsData: Alert[] = [
 ];
 
 export default function AlertsPage() {
+    const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+
+    const filteredData = useMemo(() => {
+        if (!dateRange || (!dateRange.from && !dateRange.to)) {
+          return alertsData;
+        }
+        return alertsData.filter(item => {
+          const itemDate = new Date(item.timestamp);
+          const from = dateRange.from ? new Date(dateRange.from) : null;
+          const to = dateRange.to ? new Date(dateRange.to) : null;
+    
+          if (from && to) {
+            // Set 'to' date to the end of the day
+            to.setHours(23, 59, 59, 999);
+            return itemDate >= from && itemDate <= to;
+          }
+          if (from) {
+            return itemDate >= from;
+          }
+          if (to) {
+            to.setHours(23, 59, 59, 999);
+            return itemDate <= to;
+          }
+          return true;
+        });
+      }, [dateRange]);
+
   return (
     <DashboardLayout
       title="Alerts & Logs"
       subtitle="Here's a list of recent events, errors, and notifications."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
-            <AlertsTable data={alertsData} />
+            <AlertsTable data={filteredData} onDateChange={setDateRange} />
         </div>
     </DashboardLayout>
   );

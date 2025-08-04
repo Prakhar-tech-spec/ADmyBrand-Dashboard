@@ -36,12 +36,14 @@ import {
 } from "@/components/ui/table"
 import { Alert, columns } from "./columns"
 import { DateRangePicker } from "../ui/date-range-picker"
+import { DateRange } from "react-day-picker"
 
 type AlertsTableProps = {
     data: Alert[];
+    onDateChange: (dateRange: DateRange | undefined) => void;
 }
 
-export function AlertsTable({ data }: AlertsTableProps) {
+export function AlertsTable({ data, onDateChange }: AlertsTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -80,7 +82,7 @@ export function AlertsTable({ data }: AlertsTableProps) {
           }
           className="w-full md:max-w-sm"
         />
-        <DateRangePicker className="w-full md:w-auto" />
+        <DateRangePicker className="w-full md:w-auto" onDateChange={onDateChange} />
         <div className="flex w-full md:w-auto gap-2 justify-end md:ml-auto">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -195,9 +197,9 @@ export function AlertsTable({ data }: AlertsTableProps) {
         </Table>
       </div>
       <div className="flex items-center justify-between py-4 px-4">
-        <span className="text-sm text-muted-foreground">
+        <div className="text-sm text-muted-foreground">
             Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </span>
+        </div>
         <div className="flex items-center space-x-2">
             <Button
                 variant="outline"

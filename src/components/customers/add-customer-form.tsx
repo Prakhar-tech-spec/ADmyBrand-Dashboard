@@ -57,7 +57,7 @@ const formSchema = z.object({
 });
 
 type AddCustomerFormProps = {
-  onAddCustomer: (customer: Omit<Customer, 'id'>) => void;
+  onAddCustomer: (customer: Omit<Customer, 'id' | 'createdAt'>) => void;
 };
 
 function CustomerForm({ className, onAddCustomer }: { className?: string; onAddCustomer: (values: z.infer<typeof formSchema>) => void }) {

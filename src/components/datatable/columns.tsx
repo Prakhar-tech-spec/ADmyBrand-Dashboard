@@ -22,6 +22,7 @@ export type Campaign = {
   clicks: number
   ctr: string
   conversions: number
+  startDate: string
 }
 
 export const columns: ColumnDef<Campaign>[] = [
@@ -101,6 +102,21 @@ export const columns: ColumnDef<Campaign>[] = [
    
         return <div className="text-right font-medium">{formatted}</div>
       },
+  },
+  {
+    accessorKey: "startDate",
+    header: ({ column }) => {
+        return (
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+          >
+            Start Date
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
+        )
+      },
+      cell: ({ row }) => <div>{new Date(row.getValue("startDate")).toLocaleDateString()}</div>,
   },
   {
     id: "actions",

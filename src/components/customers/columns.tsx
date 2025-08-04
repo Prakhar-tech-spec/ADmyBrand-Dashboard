@@ -2,7 +2,7 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, MoreHorizontal, User, Mail, Building, Briefcase, Power } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal, User, Mail, Building, Briefcase, Power, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -23,6 +23,7 @@ export type Customer = {
   company: string
   role: "Admin" | "Member" | "Owner"
   status: "Active" | "Inactive"
+  createdAt: string
 }
 
 export const columns: ColumnDef<Customer>[] = [
@@ -130,6 +131,20 @@ export const columns: ColumnDef<Customer>[] = [
     filterFn: (row, id, value) => {
         return value.includes(row.getValue(id))
     },
+  },
+  {
+    accessorKey: "createdAt",
+    header: ({ column }) => (
+        <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+            <Calendar className="mr-2 h-4 w-4" />
+            Created At
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+    ),
+    cell: ({ row }) => <div>{new Date(row.getValue("createdAt")).toLocaleDateString()}</div>,
   },
   {
     id: "actions",

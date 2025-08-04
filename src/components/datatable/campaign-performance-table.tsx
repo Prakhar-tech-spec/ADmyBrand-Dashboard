@@ -37,12 +37,14 @@ import {
 } from "@/components/ui/table"
 import { Campaign, columns } from "./columns"
 import { DateRangePicker } from "../ui/date-range-picker"
+import { DateRange } from "react-day-picker"
 
 type CampaignPerformanceTableProps = {
     data: Campaign[];
+    onDateChange: (dateRange: DateRange | undefined) => void;
 }
 
-export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps) {
+export function CampaignPerformanceTable({ data, onDateChange }: CampaignPerformanceTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -81,7 +83,7 @@ export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps
           }
           className="w-full md:max-w-sm"
         />
-        <DateRangePicker className="w-full md:w-auto" />
+        <DateRangePicker className="w-full md:w-auto" onDateChange={onDateChange} />
         <div className="flex w-full md:w-auto md:ml-auto gap-2 justify-end">
             <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -162,9 +164,9 @@ export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps
         </Table>
       </div>
       <div className="flex items-center justify-between py-4 px-4">
-        <span className="text-sm text-muted-foreground">
-            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </span>
+        <div className="text-sm text-muted-foreground">
+          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+        </div>
         <div className="flex items-center space-x-2">
             <Button
                 variant="outline"

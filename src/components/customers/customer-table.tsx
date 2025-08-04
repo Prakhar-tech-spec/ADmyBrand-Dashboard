@@ -34,13 +34,15 @@ import {
 } from "@/components/ui/table"
 import { Customer, columns } from "./columns"
 import { DateRangePicker } from "../ui/date-range-picker"
+import { DateRange } from "react-day-picker"
 
 type CustomerTableProps = {
     data: Customer[];
     children?: React.ReactNode;
+    onDateChange: (dateRange: DateRange | undefined) => void;
 }
 
-export function CustomerTable({ data, children }: CustomerTableProps) {
+export function CustomerTable({ data, children, onDateChange }: CustomerTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -50,6 +52,7 @@ export function CustomerTable({ data, children }: CustomerTableProps) {
         company: false,
         role: false,
         status: false,
+        createdAt: false,
     })
   const [rowSelection, setRowSelection] = React.useState({})
 
@@ -83,7 +86,7 @@ export function CustomerTable({ data, children }: CustomerTableProps) {
           }
           className="w-full md:max-w-sm"
         />
-        <DateRangePicker className="w-full md:w-auto" />
+        <DateRangePicker className="w-full md:w-auto" onDateChange={onDateChange} />
         <div className="flex w-full md:w-auto gap-2 justify-end md:ml-auto">
             {children}
             <DropdownMenu>
@@ -165,9 +168,9 @@ export function CustomerTable({ data, children }: CustomerTableProps) {
         </Table>
       </div>
       <div className="flex items-center justify-between py-4 px-4">
-        <span className="text-sm text-muted-foreground">
-            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-        </span>
+        <div className="text-sm text-muted-foreground">
+          Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+        </div>
         <div className="flex items-center space-x-2">
             <Button
                 variant="outline"

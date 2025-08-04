@@ -1,17 +1,21 @@
 
 'use client';
 
+import { useState, useMemo } from 'react';
+import { DateRange } from 'react-day-picker';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { CampaignPerformanceTable } from '@/components/datatable/campaign-performance-table';
+import { Campaign } from '@/components/datatable/columns';
 
-const campaignData = [
+const campaignData: Campaign[] = [
     {
       campaignName: "Summer Sale 2024",
       channel: "Facebook",
       impressions: 120500,
       clicks: 4820,
       ctr: "4.00%",
-      conversions: 241
+      conversions: 241,
+      startDate: "2024-06-01"
     },
     {
       campaignName: "New Product Launch",
@@ -19,7 +23,8 @@ const campaignData = [
       impressions: 250000,
       clicks: 12500,
       ctr: "5.00%",
-      conversions: 750
+      conversions: 750,
+      startDate: "2024-05-15"
     },
     {
       campaignName: "Email Blast Q2",
@@ -27,7 +32,8 @@ const campaignData = [
       impressions: 80000,
       clicks: 9600,
       ctr: "12.00%",
-      conversions: 1200
+      conversions: 1200,
+      startDate: "2024-04-10"
     },
     {
       campaignName: "Holiday Special",
@@ -35,7 +41,8 @@ const campaignData = [
       impressions: 180000,
       clicks: 10800,
       ctr: "6.00%",
-      conversions: 540
+      conversions: 540,
+      startDate: "2023-11-20"
     },
     {
       campaignName: "Content Marketing Push",
@@ -43,7 +50,8 @@ const campaignData = [
       impressions: 95000,
       clicks: 3800,
       ctr: "4.00%",
-      conversions: 190
+      conversions: 190,
+      startDate: "2024-02-01"
     },
     {
       campaignName: "Spring Collection",
@@ -51,7 +59,8 @@ const campaignData = [
       impressions: 60000,
       clicks: 3000,
       ctr: "5.00%",
-      conversions: 210
+      conversions: 210,
+      startDate: "2024-03-01"
     },
     {
       campaignName: "Referral Program",
@@ -59,7 +68,8 @@ const campaignData = [
       impressions: 30000,
       clicks: 1500,
       ctr: "5.00%",
-      conversions: 300
+      conversions: 300,
+      startDate: "2024-01-01"
     },
     {
       campaignName: "Black Friday Deals",
@@ -67,7 +77,8 @@ const campaignData = [
       impressions: 400000,
       clicks: 28000,
       ctr: "7.00%",
-      conversions: 2800
+      conversions: 2800,
+      startDate: "2023-11-24"
     },
     {
       campaignName: "Back to School",
@@ -75,7 +86,8 @@ const campaignData = [
       impressions: 150000,
       clicks: 7500,
       ctr: "5.00%",
-      conversions: 450
+      conversions: 450,
+      startDate: "2023-08-15"
     },
     {
       campaignName: "Webinar Promotion",
@@ -83,7 +95,8 @@ const campaignData = [
       impressions: 50000,
       clicks: 6000,
       ctr: "12.00%",
-      conversions: 800
+      conversions: 800,
+      startDate: "2024-04-01"
     },
     {
       campaignName: "Cyber Monday Flash Sale",
@@ -91,7 +104,8 @@ const campaignData = [
       impressions: 220000,
       clicks: 15400,
       ctr: "7.00%",
-      conversions: 990
+      conversions: 990,
+      startDate: "2023-11-27"
     },
     {
       campaignName: "Q4 Lead Generation",
@@ -99,7 +113,8 @@ const campaignData = [
       impressions: 110000,
       clicks: 4400,
       ctr: "4.00%",
-      conversions: 220
+      conversions: 220,
+      startDate: "2023-10-01"
     },
     {
       campaignName: "New Year's Resolution",
@@ -107,7 +122,8 @@ const campaignData = [
       impressions: 300000,
       clicks: 18000,
       ctr: "6.00%",
-      conversions: 1500
+      conversions: 1500,
+      startDate: "2024-01-05"
     },
     {
       campaignName: "Valentine's Day Special",
@@ -115,7 +131,8 @@ const campaignData = [
       impressions: 75000,
       clicks: 4500,
       ctr: "6.00%",
-      conversions: 300
+      conversions: 300,
+      startDate: "2024-02-07"
     },
     {
       campaignName: "Influencer Collab",
@@ -123,7 +140,8 @@ const campaignData = [
       impressions: 90000,
       clicks: 8100,
       ctr: "9.00%",
-      conversions: 450
+      conversions: 450,
+      startDate: "2024-03-15"
     },
     {
       campaignName: "B2B Outreach",
@@ -131,7 +149,8 @@ const campaignData = [
       impressions: 40000,
       clicks: 4000,
       ctr: "10.00%",
-      conversions: 400
+      conversions: 400,
+      startDate: "2024-02-20"
     },
     {
       campaignName: "Local SEO Boost",
@@ -139,7 +158,8 @@ const campaignData = [
       impressions: 25000,
       clicks: 1000,
       ctr: "4.00%",
-      conversions: 150
+      conversions: 150,
+      startDate: "2024-01-20"
     },
     {
       campaignName: "Mobile App Installs",
@@ -147,7 +167,8 @@ const campaignData = [
       impressions: 500000,
       clicks: 10000,
       ctr: "2.00%",
-      conversions: 5000
+      conversions: 5000,
+      startDate: "2024-05-01"
     },
     {
       campaignName: "Video Ad Campaign",
@@ -155,7 +176,8 @@ const campaignData = [
       impressions: 600000,
       clicks: 30000,
       ctr: "5.00%",
-      conversions: 1800
+      conversions: 1800,
+      startDate: "2024-06-10"
     },
     {
       campaignName: "Retargeting Campaign",
@@ -163,7 +185,8 @@ const campaignData = [
       impressions: 85000,
       clicks: 5950,
       ctr: "7.00%",
-      conversions: 680
+      conversions: 680,
+      startDate: "2024-03-05"
     },
     {
       campaignName: "Affiliate Marketing",
@@ -171,7 +194,8 @@ const campaignData = [
       impressions: 45000,
       clicks: 2250,
       ctr: "5.00%",
-      conversions: 450
+      conversions: 450,
+      startDate: "2024-01-15"
     },
     {
       campaignName: "Podcast Sponsorship",
@@ -179,7 +203,8 @@ const campaignData = [
       impressions: 20000,
       clicks: 800,
       ctr: "4.00%",
-      conversions: 80
+      conversions: 80,
+      startDate: "2024-04-20"
     },
     {
       campaignName: "Community Building",
@@ -187,7 +212,8 @@ const campaignData = [
       impressions: 65000,
       clicks: 1950,
       ctr: "3.00%",
-      conversions: 130
+      conversions: 130,
+      startDate: "2024-02-15"
     },
     {
       campaignName: "Google Shopping Ads",
@@ -195,7 +221,8 @@ const campaignData = [
       impressions: 350000,
       clicks: 21000,
       ctr: "6.00%",
-      conversions: 2100
+      conversions: 2100,
+      startDate: "2023-12-01"
     },
     {
       campaignName: "Seasonal Newsletter",
@@ -203,7 +230,8 @@ const campaignData = [
       impressions: 90000,
       clicks: 10800,
       ctr: "12.00%",
-      conversions: 1350
+      conversions: 1350,
+      startDate: "2024-03-20"
     },
     {
       campaignName: "Brand Awareness Campaign",
@@ -211,7 +239,8 @@ const campaignData = [
       impressions: 450000,
       clicks: 13500,
       ctr: "3.00%",
-      conversions: 225
+      conversions: 225,
+      startDate: "2024-01-10"
     },
     {
       campaignName: "Interactive Story Ads",
@@ -219,7 +248,8 @@ const campaignData = [
       impressions: 130000,
       clicks: 9100,
       ctr: "7.00%",
-      conversions: 520
+      conversions: 520,
+      startDate: "2024-05-20"
     },
     {
       campaignName: "DIY Project Ideas",
@@ -227,7 +257,8 @@ const campaignData = [
       impressions: 88000,
       clicks: 5280,
       ctr: "6.00%",
-      conversions: 352
+      conversions: 352,
+      startDate: "2024-04-15"
     },
     {
       campaignName: "Free Trial Offer",
@@ -235,7 +266,8 @@ const campaignData = [
       impressions: 180000,
       clicks: 14400,
       ctr: "8.00%",
-      conversions: 1152
+      conversions: 1152,
+      startDate: "2024-02-25"
     },
     {
       campaignName: "Customer Loyalty Program",
@@ -243,7 +275,8 @@ const campaignData = [
       impressions: 70000,
       clicks: 9800,
       ctr: "14.00%",
-      conversions: 1470
+      conversions: 1470,
+      startDate: "2024-01-25"
     },
     {
       campaignName: "Partnership Announcement",
@@ -251,7 +284,8 @@ const campaignData = [
       impressions: 120000,
       clicks: 4800,
       ctr: "4.00%",
-      conversions: 240
+      conversions: 240,
+      startDate: "2024-05-10"
     },
     {
       campaignName: "Flash Giveaway",
@@ -259,7 +293,8 @@ const campaignData = [
       impressions: 100000,
       clicks: 12000,
       ctr: "12.00%",
-      conversions: 600
+      conversions: 600,
+      startDate: "2024-06-05"
     },
     {
       campaignName: "Early Access Sign-ups",
@@ -267,7 +302,8 @@ const campaignData = [
       impressions: 35000,
       clicks: 2100,
       ctr: "6.00%",
-      conversions: 420
+      conversions: 420,
+      startDate: "2024-03-10"
     },
     {
       campaignName: "Back-in-Stock Alert",
@@ -275,7 +311,8 @@ const campaignData = [
       impressions: 25000,
       clicks: 3750,
       ctr: "15.00%",
-      conversions: 560
+      conversions: 560,
+      startDate: "2024-04-25"
     },
     {
       campaignName: "User-Generated Content Contest",
@@ -283,7 +320,8 @@ const campaignData = [
       impressions: 95000,
       clicks: 6650,
       ctr: "7.00%",
-      conversions: 380
+      conversions: 380,
+      startDate: "2024-05-05"
     },
     {
       campaignName: "Thought Leadership Whitepaper",
@@ -291,7 +329,8 @@ const campaignData = [
       impressions: 78000,
       clicks: 2340,
       ctr: "3.00%",
-      conversions: 156
+      conversions: 156,
+      startDate: "2024-03-25"
     },
     {
       campaignName: "Local Event Promotion",
@@ -299,7 +338,8 @@ const campaignData = [
       impressions: 55000,
       clicks: 4400,
       ctr: "8.00%",
-      conversions: 352
+      conversions: 352,
+      startDate: "2024-06-15"
     },
     {
       campaignName: "Behind-the-Scenes Look",
@@ -307,7 +347,8 @@ const campaignData = [
       impressions: 160000,
       clicks: 9600,
       ctr: "6.00%",
-      conversions: 480
+      conversions: 480,
+      startDate: "2024-04-05"
     },
     {
       campaignName: "Customer Story Showcase",
@@ -315,19 +356,47 @@ const campaignData = [
       impressions: 115000,
       clicks: 6900,
       ctr: "6.00%",
-      conversions: 414
+      conversions: 414,
+      startDate: "2024-03-30"
     }
   ];
   
 
 export default function CampaignPerformancePage() {
+    const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+
+    const filteredData = useMemo(() => {
+        if (!dateRange || (!dateRange.from && !dateRange.to)) {
+          return campaignData;
+        }
+        return campaignData.filter(item => {
+          const itemDate = new Date(item.startDate);
+          const from = dateRange.from ? new Date(dateRange.from) : null;
+          const to = dateRange.to ? new Date(dateRange.to) : null;
+    
+          if (from && to) {
+            // Set 'to' date to the end of the day
+            to.setHours(23, 59, 59, 999);
+            return itemDate >= from && itemDate <= to;
+          }
+          if (from) {
+            return itemDate >= from;
+          }
+          if (to) {
+            to.setHours(23, 59, 59, 999);
+            return itemDate <= to;
+          }
+          return true;
+        });
+      }, [dateRange]);
+
   return (
     <DashboardLayout
       title="Campaign Performance"
       subtitle="Here's your campaign performance data."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
-            <CampaignPerformanceTable data={campaignData} />
+            <CampaignPerformanceTable data={filteredData} onDateChange={setDateRange} />
         </div>
     </DashboardLayout>
   );
