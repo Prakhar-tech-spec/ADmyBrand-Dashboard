@@ -6,7 +6,7 @@ import { PayflowLogo } from '../icons/payflow-logo';
 
 export function Header() {
   return (
-    <header className="flex h-24 items-center justify-between px-4 md:px-6 lg:px-8">
+    <header className="flex h-24 items-center justify-between px-4 md:px-6 lg:px-8 pt-8">
       {/* Mobile and Tablet view */}
       <div className="flex items-center gap-2 lg:hidden">
         <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary">
