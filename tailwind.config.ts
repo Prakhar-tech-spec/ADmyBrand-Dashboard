@@ -24,8 +24,8 @@ export default {
       },
       colors: {
         'sidebar-card': {
-          start: '#262220',
-          end: '#1F1B1A',
+          start: '#2a2524',
+          end: '#211e1d',
         },
         'highlight-green': '#00C48C',
         'highlight-red': '#FE5B5B',
