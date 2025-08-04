@@ -113,7 +113,7 @@ export function Sidebar() {
                         <AvatarFallback>RD</AvatarFallback>
                         </Avatar>
                         <div className='flex flex-col'>
-                            <span className='font-semibold text-sm'>Robert Doe</span>
+                            <span className='font-semibold text-sm text-primary-foreground'>Robert Doe</span>
                             <span className='text-xs text-primary-foreground/60'>robertdoe@email.com</span>
                         </div>
                     </div>
