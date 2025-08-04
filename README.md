@@ -9,8 +9,9 @@ A modern, responsive analytics dashboard built for digital marketing analytics, 
 - 📋 Data Table with sorting, filtering, pagination, and row deletion
 - 🌗 Light/Dark Mode toggle
 - 🎨 Stunning UI with custom brown/grey palette & micro animations
-- 🔔 Responsive notification modal and feature-rich toast notifications
-- 📄 PDF report generation with a real-time progress bar
+- 🔔 Responsive notification modal with deletable notifications and undo action
+- ✨ Feature-rich toast notifications for actions like copy, delete, and save
+- 📄 PDF report generation with a real-time progress bar in a toast
 - 🧠 Built with mock data and ready for Firebase Hosting
 
 ## 📁 Tech Stack
