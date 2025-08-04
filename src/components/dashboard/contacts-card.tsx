@@ -25,7 +25,7 @@ type ContactsCardProps = {
   title?: string;
 };
 
-export function ContactsCard({ title = 'Recent Contacts' }: ContactsCardProps) {
+export function ContactsCard({ title = 'Growth' }: ContactsCardProps) {
   return (
     <Card className="h-full shadow-sm rounded-3xl">
       <CardHeader className="pb-4">
