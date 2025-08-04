@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Bell, Command, Mail, Search, Menu } from 'lucide-react';
@@ -17,7 +18,7 @@ export function Header() {
                         <span className="sr-only">Toggle navigation menu</span>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="flex flex-col p-0">
+                <SheetContent side="left" className="flex flex-col p-0 w-72">
                     <Sidebar />
                 </SheetContent>
             </Sheet>

@@ -1,4 +1,5 @@
 
+
 import { BalanceCard } from '@/components/dashboard/balance-card';
 import { ContactsCard } from '@/components/dashboard/contacts-card';
 import { ExchangeCard } from '@/components/dashboard/exchange-card';
@@ -15,7 +16,9 @@ import { ChartContainer } from '@/components/ui/chart';
 export default function DashboardPage() {
   return (
     <div className="flex h-screen w-full bg-primary font-sans">
-      <Sidebar />
+      <div className="hidden lg:flex">
+        <Sidebar />
+      </div>
       <div className="flex flex-1 flex-col lg:p-2 overflow-hidden">
         <div className="flex flex-1 flex-col bg-background lg:rounded-3xl overflow-auto">
             <Header />
