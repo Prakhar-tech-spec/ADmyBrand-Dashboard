@@ -3,6 +3,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal, User, Mail, Building, Briefcase, Power, Calendar } from "lucide-react"
+import { format } from 'date-fns';
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -144,7 +145,7 @@ export const columns: ColumnDef<Customer>[] = [
             <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
     ),
-    cell: ({ row }) => <div>{new Date(row.getValue("createdAt")).toLocaleDateString()}</div>,
+    cell: ({ row }) => <div>{format(new Date(row.getValue("createdAt")), 'MM/dd/yyyy')}</div>,
   },
   {
     id: "actions",

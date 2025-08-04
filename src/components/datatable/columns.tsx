@@ -3,6 +3,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { format } from 'date-fns';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -116,7 +117,7 @@ export const columns: ColumnDef<Campaign>[] = [
           </Button>
         )
       },
-      cell: ({ row }) => <div>{new Date(row.getValue("startDate")).toLocaleDateString()}</div>,
+      cell: ({ row }) => <div>{format(new Date(row.getValue("startDate")), 'MM/dd/yyyy')}</div>,
   },
   {
     id: "actions",
