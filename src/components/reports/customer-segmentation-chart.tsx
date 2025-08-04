@@ -48,7 +48,7 @@ export function CustomerSegmentationChart() {
             Distribution of customers by status.
         </CardDescription>
       </CardHeader>
-      <CardContent className="h-[22rem] flex flex-col justify-center">
+      <CardContent className="h-[25rem] flex flex-col justify-center">
         <ChartContainer config={chartConfig} className="w-full h-full aspect-square">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>

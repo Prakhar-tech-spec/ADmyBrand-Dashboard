@@ -21,7 +21,7 @@ const captureChartAsImage = async (elementId: string): Promise<string> => {
         scale: 2,
         backgroundColor: null
     });
-    return canvas.toDataURL('image/png');
+    return canvas.toDataURL('image/png', 0.9);
 };
 
 export const generatePdf = async (campaignData: Campaign[]) => {
@@ -41,34 +41,43 @@ export const generatePdf = async (campaignData: Campaign[]) => {
     const chartIds = [
         'sales-line-chart', 
         'revenue-bar-chart', 
-        'traffic-source-pie-chart', 
+        'traffic-source-pie-chart',
+        'customer-segmentation-chart',
         'campaign-channel-chart',
-        'customer-segmentation-chart'
     ];
 
     const chartImages = await Promise.all(chartIds.map(id => captureChartAsImage(id)));
 
-    const chartWidth = pdfWidth - 2 * margin;
-    const chartHeight = 100; // Increased height for better aspect ratio
+    // Two column layout for charts
+    const chartWidth = (pdfWidth - 3 * margin) / 2;
+    const chartHeight = 80;
 
-    chartImages.forEach((imageData) => {
-        if (yPos + chartHeight > pdfHeight - margin) {
-            pdf.addPage();
-            yPos = margin;
-        }
+    pdf.addImage(chartImages[0], 'PNG', margin, yPos, chartWidth, chartHeight);
+    pdf.addImage(chartImages[1], 'PNG', margin + chartWidth + margin, yPos, chartWidth, chartHeight);
+    yPos += chartHeight + 10;
+    
+    pdf.addImage(chartImages[2], 'PNG', margin, yPos, chartWidth, chartHeight);
+    pdf.addImage(chartImages[3], 'PNG', margin + chartWidth + margin, yPos, chartWidth, chartHeight);
+    yPos += chartHeight + 10;
+    
+    // Full width for the last chart
+    const fullWidthChartWidth = pdfWidth - 2 * margin;
+    const fullWidthChartHeight = 90;
+    
+    if (yPos + fullWidthChartHeight > pdfHeight - margin) {
+        pdf.addPage();
+        yPos = margin;
+    }
+    
+    pdf.addImage(chartImages[4], 'PNG', margin, yPos, fullWidthChartWidth, fullWidthChartHeight);
+    yPos += fullWidthChartHeight + 10;
 
-        pdf.addImage(imageData, 'PNG', margin, yPos, chartWidth, chartHeight);
-        yPos += chartHeight + 10;
-    });
 
     // Campaign Performance Table
     if (yPos > pdfHeight - 80) { // Check if there's enough space for table header
         pdf.addPage();
         yPos = margin;
-    } else {
-        yPos += 5;
     }
-
 
     pdf.setFontSize(18);
     pdf.setFont('helvetica', 'bold');

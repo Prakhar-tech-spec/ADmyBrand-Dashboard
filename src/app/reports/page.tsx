@@ -113,26 +113,20 @@ export default function ReportsPage() {
       </div>
       <div id="reports-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="lg:col-span-2" id="sales-line-chart">
+            <div id="sales-line-chart">
                 <SalesLineChart />
             </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            <div className="lg:col-span-2" id="revenue-bar-chart">
+            <div id="revenue-bar-chart">
                 <RevenueBarChart />
             </div>
             <div id="traffic-source-pie-chart">
                 <TrafficSourcePieChart />
             </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-            <div className="lg:col-span-2" id="campaign-channel-chart">
-                <CampaignChannelChart />
-            </div>
             <div id="customer-segmentation-chart">
                 <CustomerSegmentationChart />
+            </div>
+            <div className="lg:col-span-2" id="campaign-channel-chart">
+                <CampaignChannelChart />
             </div>
         </div>
       </div>

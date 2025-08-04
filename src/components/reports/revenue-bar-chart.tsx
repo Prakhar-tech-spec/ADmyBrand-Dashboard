@@ -40,7 +40,7 @@ export function RevenueBarChart() {
             A bar chart showing revenue for the last 6 months.
         </CardDescription>
       </CardHeader>
-      <CardContent className='h-[22rem]'>
+      <CardContent className='h-[25rem]'>
         <ChartContainer config={chartConfig} className="w-full h-full">
             <BarChart data={revenueData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                 <CartesianGrid vertical={false} strokeDasharray="3 3" />
