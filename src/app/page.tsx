@@ -1,4 +1,12 @@
+'use client';
 
+import {
+  LayoutDashboard,
+  CreditCard,
+  Receipt,
+  Settings,
+  History,
+} from 'lucide-react';
 
 import { BalanceCard } from '@/components/dashboard/balance-card';
 import { ContactsCard } from '@/components/dashboard/contacts-card';
@@ -12,6 +20,16 @@ import { Button } from '@/components/ui/button';
 import { GridIcon } from '@/components/icons/grid-icon';
 import { cn } from '@/lib/utils';
 import { ChartContainer } from '@/components/ui/chart';
+import FloatingActionMenu from '@/components/ui/floating-action-menu';
+
+const menuItems = [
+  { name: 'Dashboard', href: '#', icon: <LayoutDashboard className="w-4 h-4" /> },
+  { name: 'Cards', href: '#', icon: <CreditCard className="w-4 h-4" /> },
+  { name: 'Receipts', href: '#', icon: <Receipt className="w-4 h-4" /> },
+  { name: 'Manage', href: '#', icon: <Settings className="w-4 h-4" /> },
+  { name: 'History', href: '#', icon: <History className="w-4 h-4" /> },
+];
+
 
 export default function DashboardPage() {
   return (
@@ -60,6 +78,18 @@ export default function DashboardPage() {
             </div>
             </main>
         </div>
+      </div>
+      <div className="lg:hidden">
+        <FloatingActionMenu
+          options={menuItems.map(item => ({
+            label: item.name,
+            Icon: item.icon,
+            onClick: () => {
+              // You can add navigation logic here, e.g., router.push(item.href)
+              console.log(`${item.name} clicked`);
+            },
+          }))}
+        />
       </div>
     </div>
   );
