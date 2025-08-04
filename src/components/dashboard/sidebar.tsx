@@ -54,7 +54,7 @@ export function Sidebar() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 rounded-2xl px-3 py-2.5 text-sm font-medium',
+                  'flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium',
                   index === 0
                     ? 'bg-primary-foreground/10 text-primary-foreground'
                     : 'text-gray-300 hover:bg-primary-foreground/10'
