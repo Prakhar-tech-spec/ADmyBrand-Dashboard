@@ -60,7 +60,7 @@ export function ExpensesChart() {
                 dataKey="month"
                 tickLine={false}
                 axisLine={false}
-                tickMargin={8}
+                tickMargin={10}
                 fontSize={12}
                 />
                 <Tooltip
