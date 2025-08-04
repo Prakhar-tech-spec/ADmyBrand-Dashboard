@@ -22,14 +22,18 @@ import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
 
-export function BalanceCard() {
+type BalanceCardProps = {
+    title?: string;
+}
+
+export function BalanceCard({ title = "Revenue" }: BalanceCardProps) {
   return (
     <Card className="shadow-sm rounded-3xl bg-gradient-to-b from-balance-card-shiny-start to-balance-card-shiny-end text-primary-foreground border-none p-2">
       <CardHeader className="pb-4 pt-4 px-4">
         <div className="flex items-start justify-between">
             <div>
                 <CardTitle className="text-base font-semibold text-primary-foreground">
-                    Revenue
+                    {title}
                 </CardTitle>
                 <CardDescription className='text-primary-foreground/70'>Available for use</CardDescription>
             </div>

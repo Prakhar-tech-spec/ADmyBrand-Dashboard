@@ -24,7 +24,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <BalanceCard />
             <ContactsCard />
-            <BalanceCard />
+            <BalanceCard title="Conversions" />
             <ContactsCard />
           </div>
         </div>
