@@ -157,17 +157,11 @@ export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4 px-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length > 0 ? 
-            `${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} row(s) selected.` :
-            `${table.getFilteredRowModel().rows.length} total rows.`
-          }
-        </div>
+      <div className="flex items-center justify-between py-4 px-4">
+        <span className="text-sm text-muted-foreground">
+            Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+        </span>
         <div className="flex items-center space-x-2">
-            <span className="text-sm text-muted-foreground">
-                Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
-            </span>
             <Button
                 variant="outline"
                 size="sm"
