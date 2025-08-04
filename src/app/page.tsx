@@ -15,7 +15,10 @@ import DashboardLayout from '@/components/layout/dashboard-layout';
 
 export default function DashboardPage() {
   return (
-    <DashboardLayout>
+    <DashboardLayout
+      title="You're back!"
+      subtitle="Let’s go."
+    >
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 xl:col-span-4">
           <div className="space-y-6">

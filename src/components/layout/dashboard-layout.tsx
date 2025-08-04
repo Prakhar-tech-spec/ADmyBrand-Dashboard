@@ -22,7 +22,13 @@ const menuItems = [
   { name: 'History', href: '#', icon: <History className="w-4 h-4" /> },
 ];
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+type DashboardLayoutProps = {
+  children: React.ReactNode;
+  title?: string;
+  subtitle?: string;
+};
+
+export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   return (
     <div className="flex h-screen w-full bg-background lg:bg-primary font-sans">
       <SidebarProvider>
@@ -31,7 +37,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
         <div className="flex flex-1 flex-col overflow-hidden">
           <div className="flex flex-1 flex-col bg-background lg:rounded-3xl overflow-auto lg:m-4">
-              <Header />
+              <Header title={title} subtitle={subtitle} />
               <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
                 {children}
               </main>
