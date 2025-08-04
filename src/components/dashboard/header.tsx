@@ -29,8 +29,8 @@ export function Header({
         <span className="text-base text-muted-foreground">{subtitle}</span>
       </div>
 
-      <Button variant="ghost" size="icon" className="text-muted-foreground">
-        <Bell className="h-6 w-6" />
+      <Button variant="outline" size="icon" className="rounded-full bg-card h-12 w-12">
+        <Bell className="h-6 w-6 text-muted-foreground" />
         <span className="sr-only">Notifications</span>
       </Button>
     </header>
