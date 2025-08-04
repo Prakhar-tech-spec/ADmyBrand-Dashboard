@@ -46,7 +46,7 @@ export function Sidebar() {
         </Button>
       </div>
       <nav className="flex-1 py-4 flex flex-col gap-2">
-        <Card className="bg-transparent border-none">
+        <Card className="bg-primary-foreground/5 border-none rounded-2xl">
           <CardContent className="p-1">
             {menuItems.map((item, index) => (
               <Link
