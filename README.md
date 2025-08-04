@@ -6,12 +6,12 @@ A modern, responsive analytics dashboard built for digital marketing analytics, 
 
 - 📊 Overview with key marketing metrics (Revenue, Users, Conversions, Growth)
 - 📈 Interactive Charts (Line, Bar, Donut – Recharts)
-- 📋 Data Table with sorting, filtering & pagination
+- 📋 Data Table with sorting, filtering, pagination, and row deletion
 - 🌗 Light/Dark Mode toggle
 - 🎨 Stunning UI with custom brown/grey palette & micro animations
-- 🧠 Built with mock data and Firebase Hosting
-- 🔔 Feature-rich toast notifications for user feedback
-- 📄 PDF report generation with real-time progress
+- 🔔 Responsive notification modal and feature-rich toast notifications
+- 📄 PDF report generation with a real-time progress bar
+- 🧠 Built with mock data and ready for Firebase Hosting
 
 ## 📁 Tech Stack
 
