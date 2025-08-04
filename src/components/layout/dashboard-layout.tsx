@@ -33,7 +33,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
     if (pathname === '/reports') {
       return <ReportsSkeleton />;
     }
-    if (pathname === '/campaignperformance' || pathname === '/customers' || pathname === '/alerts') {
+    if (pathname === '/campaignperformance' || pathname === '/customers' || pathname === '/alerts' || pathname === '/settings') {
       return <TableSkeleton />;
     }
     // Default to dashboard skeleton for root and other pages

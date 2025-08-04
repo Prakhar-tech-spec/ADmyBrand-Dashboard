@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bell, Menu, Home, FileText, Table, Users, ShieldAlert } from 'lucide-react';
+import { Bell, Menu, Home, FileText, Table, Users, ShieldAlert, Settings } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +19,7 @@ const menuItems = [
     { name: 'Campaign Performance', href: '/campaignperformance', icon: Table },
     { name: 'Customers', href: '/customers', icon: Users },
     { name: 'Alerts & Logs', href: '/alerts', icon: ShieldAlert },
+    { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
 type HeaderProps = {
