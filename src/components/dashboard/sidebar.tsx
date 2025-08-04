@@ -13,6 +13,7 @@ import {
   Plus,
   Menu,
   ChevronDown,
+  Receipt,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -26,7 +27,7 @@ import { RadialChart } from '../icons/radial-chart';
 const menuItems = [
   { name: 'Dashboard', href: '#', icon: Home },
   { name: 'Cards', href: '#', icon: CreditCard },
-  { name: 'Receipts', href: '#', icon: User },
+  { name: 'Receipts', href: '#', icon: Receipt },
   { name: 'Manage', href: '#', icon: GridIcon },
   { name: 'History', href: '#', icon: History },
 ];
