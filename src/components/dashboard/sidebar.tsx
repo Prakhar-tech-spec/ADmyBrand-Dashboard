@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -5,9 +6,9 @@ import { usePathname } from 'next/navigation';
 import {
   CreditCard,
   History,
-  LayoutDashboard,
+  Home,
   LogOut,
-  Receipt,
+  User,
   Settings,
   Plus,
   Menu,
@@ -22,10 +23,10 @@ import { GridIcon } from '../icons/grid-icon';
 import { RadialChart } from '../icons/radial-chart';
 
 const menuItems = [
-  { name: 'Dashboard', href: '#', icon: LayoutDashboard },
+  { name: 'Dashboard', href: '#', icon: Home },
   { name: 'Cards', href: '#', icon: CreditCard },
-  { name: 'Receipts', href: '#', icon: Receipt },
-  { name: 'Manage', href: '#', icon: Settings },
+  { name: 'Receipts', href: '#', icon: User },
+  { name: 'Manage', href: '#', icon: GridIcon },
   { name: 'History', href: '#', icon: History },
 ];
 
@@ -56,15 +57,15 @@ export function Sidebar() {
             )}
           >
             <div className={cn(
-                "p-1.5 rounded-lg",
-                index === 0 ? "bg-white/20" : "bg-primary-foreground/10"
+                "p-1.5 rounded-full flex items-center justify-center h-8 w-8",
+                index === 0 ? "bg-primary-foreground/20" : "bg-primary-foreground/10"
             )}>
                 <item.icon className="h-5 w-5" />
             </div>
             {item.name}
           </Link>
         ))}
-        <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start mt-4! h-auto">
+        <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start mt-4! h-12 border-dashed border-2 border-primary-foreground/20">
             <div className="p-1.5 rounded-lg bg-primary-foreground/10">
                 <GridIcon className='h-5 w-5' />
             </div>

@@ -1,3 +1,4 @@
+
 import type { SVGProps } from 'react';
 
 export const GridIcon = (props: SVGProps<SVGSVGElement>) => (
