@@ -4,32 +4,26 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  CreditCard,
-  History,
   Home,
-  LogOut,
-  User,
-  Settings,
-  Plus,
   Menu,
-  ChevronDown,
-  Receipt,
+  Settings,
+  FileText,
+  Table,
+  Users,
+  ShieldAlert,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
-import { ADmyBRANDLogo } from '../icons/admybrand-logo';
-import { GridIcon } from '../icons/grid-icon';
 import { RadialChart } from '../icons/radial-chart';
 
 const menuItems = [
   { name: 'Dashboard', href: '#', icon: Home },
-  { name: 'Cards', href: '#', icon: CreditCard },
-  { name: 'Receipts', href: '#', icon: Receipt },
-  { name: 'Manage', href: '#', icon: GridIcon },
-  { name: 'History', href: '#', icon: History },
+  { name: 'Reports', href: '#', icon: FileText },
+  { name: 'Data Table', href: '#', icon: Table },
+  { name: 'Customers', href: '#', icon: Users },
+  { name: 'Alerts & Logs', href: '#', icon: ShieldAlert },
 ];
 
 export function Sidebar() {
