@@ -35,7 +35,7 @@ export const generatePdf = async (campaignData: Campaign[], toasterRef: React.Re
     const updateProgress = (progress: number, message: string) => {
         const toastContent = (
             <div className='w-full'>
-                <p>{message}</p>
+                <div>{message}</div>
                 <Progress value={progress} className="mt-2" indicatorClassName={progress === 100 ? "bg-green-500" : ""} />
             </div>
         );
@@ -81,7 +81,7 @@ export const generatePdf = async (campaignData: Campaign[], toasterRef: React.Re
         
         const chartImages = [];
         for (let i = 0; i < chartIds.length; i++) {
-            updateProgress( (i / chartIds.length) * 80, `Capturing chart ${i + 1} of ${chartIds.length}...`);
+            updateProgress( ((i+1) / chartIds.length) * 80, `Capturing chart ${i + 1} of ${chartIds.length}...`);
             const image = await captureChartAsImage(chartIds[i]);
             chartImages.push(image);
         }

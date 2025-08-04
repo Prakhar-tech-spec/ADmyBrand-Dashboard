@@ -42,6 +42,7 @@ export interface ToasterProps {
   actions?: ActionButton;
   onDismiss?: () => void;
   highlightTitle?: boolean;
+  className?: string;
 }
 
 export interface ToasterRef {
@@ -96,6 +97,7 @@ const Toaster = forwardRef<ToasterRef, { defaultPosition?: Position }>(
         actions,
         onDismiss,
         highlightTitle,
+        className,
       }: ToasterProps) => {
         const Icon = variantIcons[variant];
 
@@ -109,7 +111,8 @@ const Toaster = forwardRef<ToasterRef, { defaultPosition?: Position }>(
               transition={{ duration: 0.3, ease: 'easeOut' }}
               className={cn(
                 'flex items-center justify-between w-full max-w-xs p-3 rounded-xl border shadow-md',
-                variantStyles[variant]
+                variantStyles[variant],
+                className
               )}
             >
               <div className="flex items-start gap-2">
@@ -126,7 +129,7 @@ const Toaster = forwardRef<ToasterRef, { defaultPosition?: Position }>(
                       {title}
                     </h3>
                   )}
-                  <p className="text-xs text-muted-foreground">{message}</p>
+                  <div className="text-xs text-muted-foreground">{message}</div>
                 </div>
               </div>
 
@@ -186,10 +189,12 @@ const Toaster = forwardRef<ToasterRef, { defaultPosition?: Position }>(
                   transition={{ duration: 0.3, ease: 'easeOut' }}
                   className={cn(
                     'flex items-center justify-between w-full max-w-xs p-3 rounded-xl border shadow-md',
-                    variantStyles[props.variant || 'default']
+                    variantStyles[props.variant || 'default'],
+                    props.className
                   )}
                 >
                   <div className="flex items-start gap-2">
+                    <Icon className={cn('h-4 w-4 mt-0.5 flex-shrink-0', iconColor[props.variant || 'default'])} />
                     <div className="space-y-0.5">
                       {props.title && (
                         <h3 className={cn('text-xs font-medium leading-none', titleColor[props.variant || 'default'])}>
