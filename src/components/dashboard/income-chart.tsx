@@ -52,7 +52,7 @@ export function IncomeChart() {
             <MoreHorizontal />
         </Button>
       </CardHeader>
-      <CardContent className="h-48">
+      <CardContent className="h-64 sm:h-48">
         <ChartContainer config={chartConfig} className="w-full h-full">
             <BarChart accessibilityLayer data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 10 }}>
                 <CartesianGrid vertical={false} strokeDasharray="3 3" />

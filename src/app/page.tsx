@@ -21,7 +21,7 @@ export default function DashboardPage() {
       title="You're back!"
       subtitle="Let’s go."
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <BalanceCard showDropdown={true}/>
@@ -33,10 +33,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-1">
           <NotesCard />
         </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        <div>
+        <div className="md:col-span-1">
           <ChartContainer
             config={{
               expenses: {
@@ -48,7 +45,7 @@ export default function DashboardPage() {
             <ExpensesChart />
           </ChartContainer>
         </div>
-        <div>
+        <div className="md:col-span-1">
           <ChartContainer
             config={{
               income: {
@@ -60,7 +57,7 @@ export default function DashboardPage() {
             <IncomeChart />
           </ChartContainer>
         </div>
-        <div>
+        <div className="md:col-span-2 lg:col-span-1">
           <IncomeExpenseDonutChart income={totalIncome} expenses={totalExpenses} />
         </div>
       </div>
