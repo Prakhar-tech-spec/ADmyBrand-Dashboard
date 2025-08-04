@@ -41,7 +41,7 @@ export function CampaignChannelChart() {
             A bar chart showing total clicks per marketing channel.
         </CardDescription>
       </CardHeader>
-      <CardContent className='h-80'>
+      <CardContent className='h-[22rem]'>
         <ChartContainer config={chartConfig} className="w-full h-full">
             <BarChart data={channelData} layout="vertical" margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                 <CartesianGrid horizontal={false} strokeDasharray="3 3" />

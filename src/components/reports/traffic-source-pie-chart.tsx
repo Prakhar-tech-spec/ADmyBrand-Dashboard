@@ -52,7 +52,7 @@ export function TrafficSourcePieChart() {
             Distribution of traffic sources.
         </CardDescription>
       </CardHeader>
-      <CardContent className="h-80 flex flex-col justify-center">
+      <CardContent className="h-[22rem] flex flex-col justify-center">
         <ChartContainer config={chartConfig} className="w-full h-full aspect-square">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>

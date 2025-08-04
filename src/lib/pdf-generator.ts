@@ -49,27 +49,26 @@ export const generatePdf = async (campaignData: Campaign[]) => {
     const chartImages = await Promise.all(chartIds.map(id => captureChartAsImage(id)));
 
     const chartWidth = pdfWidth - 2 * margin;
-    const chartHeight = 80;
+    const chartHeight = 100; // Increased height for better aspect ratio
 
-    chartImages.forEach((imageData, index) => {
+    chartImages.forEach((imageData) => {
         if (yPos + chartHeight > pdfHeight - margin) {
             pdf.addPage();
             yPos = margin;
         }
 
-        const chartTitle = chartIds[index].replace(/-/g, ' ').replace('chart', 'Chart').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-        pdf.setFontSize(16);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text(chartTitle, margin, yPos);
-        yPos += 8;
-
         pdf.addImage(imageData, 'PNG', margin, yPos, chartWidth, chartHeight);
-        yPos += chartHeight + 15;
+        yPos += chartHeight + 10;
     });
 
     // Campaign Performance Table
-    pdf.addPage();
-    yPos = margin;
+    if (yPos > pdfHeight - 80) { // Check if there's enough space for table header
+        pdf.addPage();
+        yPos = margin;
+    } else {
+        yPos += 5;
+    }
+
 
     pdf.setFontSize(18);
     pdf.setFont('helvetica', 'bold');
