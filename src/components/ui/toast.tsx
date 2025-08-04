@@ -179,6 +179,7 @@ const Toaster = forwardRef<ToasterRef, { defaultPosition?: Position }>(
       dismiss: sonnerToast.dismiss,
       update: (toastId, props) => {
         if (!toastId) return;
+        const Icon = variantIcons[props.variant || 'default'];
         sonnerToast.custom(
             (t) => (
                 <motion.div
