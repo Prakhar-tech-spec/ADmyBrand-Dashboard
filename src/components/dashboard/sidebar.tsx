@@ -80,7 +80,7 @@ export function Sidebar() {
             </Button>
         </div>
       </nav>
-      <div className="mt-auto flex flex-col gap-4 p-2 px-2">
+      <div className="mt-auto flex flex-col gap-4 px-2">
         <Card className="bg-card text-card-foreground border-none rounded-3xl">
           <CardContent className="p-4 space-y-4">
             <div className="flex items-center gap-4">
