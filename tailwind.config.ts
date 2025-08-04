@@ -22,6 +22,10 @@ export default {
         code: ['monospace'],
       },
       colors: {
+        'sidebar-card': {
+          start: '#2a2524',
+          end: '#3b3734',
+        },
         'highlight-green': '#00C48C',
         'highlight-red': '#FE5B5B',
         background: 'hsl(var(--background))',
