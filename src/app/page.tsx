@@ -13,7 +13,7 @@ import { ChartContainer } from '@/components/ui/chart';
 
 export default function DashboardPage() {
   return (
-    <div className="flex min-h-screen w-full bg-primary font-sans rounded-3xl">
+    <div className="flex min-h-screen w-full bg-primary font-sans">
       <Sidebar />
       <div className="flex flex-1 flex-col p-4">
         <div className="flex flex-1 flex-col bg-background rounded-3xl">
