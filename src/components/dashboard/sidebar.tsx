@@ -33,7 +33,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="lg:w-72 flex-col bg-primary text-primary-foreground p-4 h-full w-full lg:flex">
+    <aside className="lg:w-64 flex-col bg-primary text-primary-foreground p-4 h-full w-full lg:flex">
       <div className="flex h-16 flex-shrink-0 items-center justify-between px-2">
         <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary-foreground">
           <PayflowLogo className="h-8 w-8" />
@@ -49,7 +49,7 @@ export function Sidebar() {
             key={item.name}
             href={item.href}
             className={cn(
-              'flex items-center gap-3 rounded-xl px-3 py-3 text-base font-medium',
+              'flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium',
               index === 0
                 ? 'bg-primary-foreground/10 text-primary-foreground'
                 : 'text-gray-300 hover:bg-primary-foreground/10'
@@ -64,7 +64,7 @@ export function Sidebar() {
             {item.name}
           </Link>
         ))}
-        <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-base font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start mt-4! h-auto">
+        <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start mt-4! h-auto">
             <div className="p-1.5 rounded-lg bg-primary-foreground/10">
                 <GridIcon className='h-5 w-5' />
             </div>
