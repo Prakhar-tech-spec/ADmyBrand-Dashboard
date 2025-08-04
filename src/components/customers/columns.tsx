@@ -28,7 +28,12 @@ export type Customer = {
   createdAt: string
 }
 
-const ActionsCell = ({ row }: { row: any }) => {
+type GetColumnsOptions = {
+    onDelete: (customerId: string) => void;
+};
+
+
+const ActionsCell = ({ row, onDelete }: { row: any, onDelete: (customerId: string) => void }) => {
     const { toasterRef } = useAppToast();
     const customer = row.original;
   
@@ -57,12 +62,19 @@ const ActionsCell = ({ row }: { row: any }) => {
           <DropdownMenuSeparator />
           <DropdownMenuItem>Edit customer</DropdownMenuItem>
           <DropdownMenuItem>View details</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem 
+            onClick={() => onDelete(customer.id)}
+            className="text-red-600 focus:text-red-600"
+          >
+            Delete
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     );
   };
 
-export const columns: ColumnDef<Customer>[] = [
+export const columns = ({ onDelete }: GetColumnsOptions): ColumnDef<Customer>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -184,6 +196,6 @@ export const columns: ColumnDef<Customer>[] = [
   },
   {
     id: "actions",
-    cell: ActionsCell
+    cell: ({ row }) => <ActionsCell row={row} onDelete={onDelete} />,
   },
 ];

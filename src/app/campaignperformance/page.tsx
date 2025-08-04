@@ -6,8 +6,9 @@ import { DateRange } from 'react-day-picker';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { CampaignPerformanceTable } from '@/components/datatable/campaign-performance-table';
 import { Campaign } from '@/components/datatable/columns';
+import { useAppToast } from '@/context/toaster-context';
 
-const campaignData: Campaign[] = [
+const initialCampaignData: Campaign[] = [
     {
       campaignName: "Summer Sale 2024",
       channel: "Facebook",
@@ -363,13 +364,24 @@ const campaignData: Campaign[] = [
   
 
 export default function CampaignPerformancePage() {
+    const [campaigns, setCampaigns] = useState<Campaign[]>(initialCampaignData);
     const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+    const { toasterRef } = useAppToast();
+
+    const deleteCampaign = (campaignName: string) => {
+        setCampaigns(prevCampaigns => prevCampaigns.filter(c => c.campaignName !== campaignName));
+        toasterRef.current?.show({
+            title: "Campaign Deleted",
+            message: `Campaign "${campaignName}" has been successfully deleted.`,
+            variant: "success",
+        });
+    }
 
     const filteredData = useMemo(() => {
         if (!dateRange || (!dateRange.from && !dateRange.to)) {
-          return campaignData;
+          return campaigns;
         }
-        return campaignData.filter(item => {
+        return campaigns.filter(item => {
           const itemDate = new Date(item.startDate);
           const from = dateRange.from ? new Date(dateRange.from) : null;
           const to = dateRange.to ? new Date(dateRange.to) : null;
@@ -388,7 +400,7 @@ export default function CampaignPerformancePage() {
           }
           return true;
         });
-      }, [dateRange]);
+      }, [campaigns, dateRange]);
 
   return (
     <DashboardLayout
@@ -396,7 +408,7 @@ export default function CampaignPerformancePage() {
       subtitle="Here's your campaign performance data."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
-            <CampaignPerformanceTable data={filteredData} onDateChange={setDateRange} />
+            <CampaignPerformanceTable data={filteredData} onDateChange={setDateRange} onDelete={deleteCampaign} />
         </div>
     </DashboardLayout>
   );

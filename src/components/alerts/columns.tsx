@@ -39,7 +39,11 @@ const severityColors = {
     "Critical": "bg-purple-600 hover:bg-purple-700",
 }
 
-export const columns: ColumnDef<Alert>[] = [
+type GetColumnsOptions = {
+    onDelete: (alertId: string) => void;
+}
+
+export const columns = ({ onDelete }: GetColumnsOptions): ColumnDef<Alert>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -141,6 +145,13 @@ export const columns: ColumnDef<Alert>[] = [
             <DropdownMenuItem>Acknowledge</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View Details</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+                onClick={() => onDelete(alert.id)}
+                className="text-red-600 focus:text-red-600"
+            >
+                Delete
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

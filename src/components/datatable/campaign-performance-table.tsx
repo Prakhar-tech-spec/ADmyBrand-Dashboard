@@ -35,16 +35,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Campaign, columns } from "./columns"
+import { Campaign, columns as campaignColumns } from "./columns"
 import { DateRangePicker } from "../ui/date-range-picker"
 import { DateRange } from "react-day-picker"
 
 type CampaignPerformanceTableProps = {
     data: Campaign[];
     onDateChange: (dateRange: DateRange | undefined) => void;
+    onDelete: (campaignName: string) => void;
 }
 
-export function CampaignPerformanceTable({ data, onDateChange }: CampaignPerformanceTableProps) {
+export function CampaignPerformanceTable({ data, onDateChange, onDelete }: CampaignPerformanceTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -52,6 +53,8 @@ export function CampaignPerformanceTable({ data, onDateChange }: CampaignPerform
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
+
+  const columns = React.useMemo(() => campaignColumns({ onDelete }), [onDelete]);
 
   const table = useReactTable({
     data,

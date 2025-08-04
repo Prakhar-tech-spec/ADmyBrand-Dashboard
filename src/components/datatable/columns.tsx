@@ -27,7 +27,11 @@ export type Campaign = {
   startDate: string
 }
 
-const ActionsCell = ({ row }: { row: any }) => {
+type GetColumnsOptions = {
+    onDelete: (campaignName: string) => void;
+};
+
+const ActionsCell = ({ row, onDelete }: { row: any, onDelete: (campaignName: string) => void; }) => {
     const { toasterRef } = useAppToast();
     const campaign = row.original;
   
@@ -55,12 +59,19 @@ const ActionsCell = ({ row }: { row: any }) => {
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View details</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+                onClick={() => onDelete(campaign.campaignName)}
+                className="text-red-600 focus:text-red-600"
+            >
+                Delete
+            </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );
 };
 
-export const columns: ColumnDef<Campaign>[] = [
+export const columns = ({ onDelete }: GetColumnsOptions): ColumnDef<Campaign>[] => [
     {
         id: "select",
         header: ({ table }) => (
@@ -156,6 +167,6 @@ export const columns: ColumnDef<Campaign>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ActionsCell,
+    cell: ({ row }) => <ActionsCell row={row} onDelete={onDelete} />,
   },
 ]

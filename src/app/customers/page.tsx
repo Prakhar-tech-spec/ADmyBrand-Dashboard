@@ -7,6 +7,7 @@ import DashboardLayout from '@/components/layout/dashboard-layout';
 import { CustomerTable } from '@/components/customers/customer-table';
 import { Customer } from '@/components/customers/columns';
 import { AddCustomerForm } from '@/components/customers/add-customer-form';
+import { useAppToast } from '@/context/toaster-context';
 
 const initialCustomerData: Customer[] = [
     {
@@ -374,6 +375,7 @@ const initialCustomerData: Customer[] = [
 export default function CustomersPage() {
     const [customers, setCustomers] = useState<Customer[]>(initialCustomerData);
     const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+    const { toasterRef } = useAppToast();
 
     const addCustomer = (customer: Omit<Customer, 'id' | 'createdAt'>) => {
         const newCustomer: Customer = {
@@ -382,6 +384,15 @@ export default function CustomersPage() {
             ...customer
         };
         setCustomers(prevCustomers => [newCustomer, ...prevCustomers]);
+    }
+
+    const deleteCustomer = (customerId: string) => {
+        setCustomers(prevCustomers => prevCustomers.filter(customer => customer.id !== customerId));
+        toasterRef.current?.show({
+            title: "Customer Deleted",
+            message: `Customer ${customerId} has been successfully deleted.`,
+            variant: "success",
+        });
     }
 
     const filteredCustomers = useMemo(() => {
@@ -415,7 +426,7 @@ export default function CustomersPage() {
       subtitle="Here's a list of your customers."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
-            <CustomerTable data={filteredCustomers} onDateChange={setDateRange}>
+            <CustomerTable data={filteredCustomers} onDateChange={setDateRange} onDelete={deleteCustomer}>
                 <AddCustomerForm onAddCustomer={addCustomer} />
             </CustomerTable>
         </div>

@@ -32,7 +32,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Customer, columns } from "./columns"
+import { Customer, columns as customerColumns } from "./columns"
 import { DateRangePicker } from "../ui/date-range-picker"
 import { DateRange } from "react-day-picker"
 
@@ -40,9 +40,10 @@ type CustomerTableProps = {
     data: Customer[];
     children?: React.ReactNode;
     onDateChange: (dateRange: DateRange | undefined) => void;
+    onDelete: (customerId: string) => void;
 }
 
-export function CustomerTable({ data, children, onDateChange }: CustomerTableProps) {
+export function CustomerTable({ data, children, onDateChange, onDelete }: CustomerTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -55,6 +56,8 @@ export function CustomerTable({ data, children, onDateChange }: CustomerTablePro
         createdAt: false,
     })
   const [rowSelection, setRowSelection] = React.useState({})
+  
+  const columns = React.useMemo(() => customerColumns({ onDelete }), [onDelete]);
 
   const table = useReactTable({
     data,

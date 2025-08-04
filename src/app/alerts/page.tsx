@@ -6,8 +6,9 @@ import { DateRange } from 'react-day-picker';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { AlertsTable } from '@/components/alerts/alerts-table';
 import { Alert } from '@/components/alerts/columns';
+import { useAppToast } from '@/context/toaster-context';
 
-const alertsData: Alert[] = [
+const initialAlertsData: Alert[] = [
     {
       id: "ALERT-001",
       timestamp: "2025-08-03 11:03",
@@ -331,13 +332,24 @@ const alertsData: Alert[] = [
 ];
 
 export default function AlertsPage() {
+    const [alerts, setAlerts] = useState<Alert[]>(initialAlertsData);
     const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+    const { toasterRef } = useAppToast();
+
+    const deleteAlert = (alertId: string) => {
+        setAlerts(prevAlerts => prevAlerts.filter(alert => alert.id !== alertId));
+        toasterRef.current?.show({
+            title: "Alert Deleted",
+            message: `Alert ${alertId} has been successfully deleted.`,
+            variant: "success",
+        });
+    }
 
     const filteredData = useMemo(() => {
         if (!dateRange || (!dateRange.from && !dateRange.to)) {
-          return alertsData;
+          return alerts;
         }
-        return alertsData.filter(item => {
+        return alerts.filter(item => {
           const itemDate = new Date(item.timestamp);
           const from = dateRange.from ? new Date(dateRange.from) : null;
           const to = dateRange.to ? new Date(dateRange.to) : null;
@@ -356,7 +368,7 @@ export default function AlertsPage() {
           }
           return true;
         });
-      }, [dateRange]);
+      }, [alerts, dateRange]);
 
   return (
     <DashboardLayout
@@ -364,7 +376,7 @@ export default function AlertsPage() {
       subtitle="Here's a list of recent events, errors, and notifications."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
-            <AlertsTable data={filteredData} onDateChange={setDateRange} />
+            <AlertsTable data={filteredData} onDateChange={setDateRange} onDelete={deleteAlert} />
         </div>
     </DashboardLayout>
   );

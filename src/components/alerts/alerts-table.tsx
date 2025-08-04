@@ -34,16 +34,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Alert, columns } from "./columns"
+import { Alert, columns as alertColumns } from "./columns"
 import { DateRangePicker } from "../ui/date-range-picker"
 import { DateRange } from "react-day-picker"
 
 type AlertsTableProps = {
     data: Alert[];
     onDateChange: (dateRange: DateRange | undefined) => void;
+    onDelete: (alertId: string) => void;
 }
 
-export function AlertsTable({ data, onDateChange }: AlertsTableProps) {
+export function AlertsTable({ data, onDateChange, onDelete }: AlertsTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -51,6 +52,8 @@ export function AlertsTable({ data, onDateChange }: AlertsTableProps) {
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
+
+  const columns = React.useMemo(() => alertColumns({ onDelete }), [onDelete]);
 
   const table = useReactTable({
     data,
