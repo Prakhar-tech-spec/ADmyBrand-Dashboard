@@ -55,16 +55,6 @@ export function BalanceCard({ title = "Revenue" }: BalanceCardProps) {
                 <div className="text-4xl font-bold text-primary mt-1">
                     $18,248<span className='text-muted-foreground'>.44</span>
                 </div>
-                <div className="mt-6 space-y-4">
-                    <Button variant="ghost" className="w-auto p-0 h-auto justify-start font-semibold text-secondary-foreground gap-3">
-                        <ArrowUp className="h-4 w-4" />
-                        Send
-                    </Button>
-                    <Button variant="ghost" className="w-auto p-0 h-auto justify-start font-semibold text-secondary-foreground gap-3">
-                        <ArrowDown className="h-4 w-4" />
-                        Request
-                    </Button>
-                </div>
             </CardContent>
         </Card>
       </CardContent>
