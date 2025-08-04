@@ -3,6 +3,9 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import html2canvas from 'html2canvas';
 import { Campaign } from '@/components/datatable/columns';
+import { toast as toastFn } from '@/hooks/use-toast';
+import { Progress } from '@/components/ui/progress';
+import React from 'react';
 
 declare module 'jspdf' {
     interface jsPDF {
@@ -24,76 +27,116 @@ const captureChartAsImage = async (elementId: string): Promise<string> => {
     return canvas.toDataURL('image/png', 0.9);
 };
 
-export const generatePdf = async (campaignData: Campaign[]) => {
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-    const margin = 15;
-    let yPos = margin;
-
-    // Title
-    pdf.setFontSize(22);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('Marketing Performance Report', pdfWidth / 2, yPos, { align: 'center' });
-    yPos += 15;
-
-    // Charts
-    const chartIds = [
-        'sales-line-chart', 
-        'revenue-bar-chart', 
-        'traffic-source-pie-chart',
-        'customer-segmentation-chart',
-        'campaign-channel-chart',
-    ];
-
-    const chartImages = await Promise.all(chartIds.map(id => captureChartAsImage(id)));
-
-    // Two column layout for charts
-    const chartWidth = (pdfWidth - 3 * margin) / 2;
-    const chartHeight = 80;
-
-    pdf.addImage(chartImages[0], 'PNG', margin, yPos, chartWidth, chartHeight);
-    pdf.addImage(chartImages[1], 'PNG', margin + chartWidth + margin, yPos, chartWidth, chartHeight);
-    yPos += chartHeight + 10;
-    
-    pdf.addImage(chartImages[2], 'PNG', margin, yPos, chartWidth, chartHeight);
-    pdf.addImage(chartImages[3], 'PNG', margin + chartWidth + margin, yPos, chartWidth, chartHeight);
-    yPos += chartHeight + 10;
-    
-    // Full width for the last chart
-    const fullWidthChartWidth = pdfWidth - 2 * margin;
-    const fullWidthChartHeight = 90;
-    
-    if (yPos + fullWidthChartHeight > pdfHeight - margin) {
-        pdf.addPage();
-        yPos = margin;
-    }
-    
-    pdf.addImage(chartImages[4], 'PNG', margin, yPos, fullWidthChartWidth, fullWidthChartHeight);
-    yPos += fullWidthChartHeight + 10;
-
-
-    // Campaign Performance Table
-    if (yPos > pdfHeight - 80) { // Check if there's enough space for table header
-        pdf.addPage();
-        yPos = margin;
-    }
-
-    pdf.setFontSize(18);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('Campaign Performance Data', margin, yPos);
-    yPos += 10;
-
-    pdf.autoTable({
-        startY: yPos,
-        head: [['Campaign Name', 'Channel', 'Impressions', 'Clicks', 'CTR', 'Conversions']],
-        body: campaignData.map(c => [c.campaignName, c.channel, c.impressions, c.clicks, c.ctr, c.conversions]),
-        theme: 'striped',
-        headStyles: { fillColor: [41, 128, 185] },
-        styles: { fontSize: 8 },
-        margin: { left: margin, right: margin }
+export const generatePdf = async (campaignData: Campaign[], toast: typeof toastFn) => {
+    const { id: toastId, update } = toast({
+        title: "Generating Report...",
+        description: React.createElement('div', null, 
+            React.createElement('p', null, 'Initializing...'),
+            React.createElement(Progress, { value: 0, className: "mt-2" })
+        ),
     });
 
-    // Save the PDF
-    pdf.save('marketing-report.pdf');
+    try {
+        const updateProgress = (progress: number, message: string) => {
+            update({
+                id: toastId,
+                title: "Generating Report...",
+                description: React.createElement('div', null, 
+                    React.createElement('p', null, message),
+                    React.createElement(Progress, { value: progress, className: "mt-2" })
+                ),
+            });
+        };
+        
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const margin = 15;
+        let yPos = margin;
+
+        pdf.setFontSize(22);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Marketing Performance Report', pdfWidth / 2, yPos, { align: 'center' });
+        yPos += 15;
+
+        const chartIds = [
+            'sales-line-chart', 
+            'revenue-bar-chart', 
+            'traffic-source-pie-chart',
+            'customer-segmentation-chart',
+            'campaign-channel-chart',
+        ];
+        
+        const chartImages = [];
+        for (let i = 0; i < chartIds.length; i++) {
+            updateProgress( (i / chartIds.length) * 80, `Capturing chart ${i + 1} of ${chartIds.length}...`);
+            const image = await captureChartAsImage(chartIds[i]);
+            chartImages.push(image);
+        }
+        
+        updateProgress(90, 'Adding charts to PDF...');
+        const chartWidth = (pdfWidth - 3 * margin) / 2;
+        const chartHeight = 80;
+
+        pdf.addImage(chartImages[0], 'PNG', margin, yPos, chartWidth, chartHeight);
+        pdf.addImage(chartImages[1], 'PNG', margin + chartWidth + margin, yPos, chartWidth, chartHeight);
+        yPos += chartHeight + 10;
+        
+        pdf.addImage(chartImages[2], 'PNG', margin, yPos, chartWidth, chartHeight);
+        pdf.addImage(chartImages[3], 'PNG', margin + chartWidth + margin, yPos, chartWidth, chartHeight);
+        yPos += chartHeight + 10;
+        
+        const fullWidthChartWidth = pdfWidth - 2 * margin;
+        const fullWidthChartHeight = 90;
+        
+        if (yPos + fullWidthChartHeight > pdfHeight - margin) {
+            pdf.addPage();
+            yPos = margin;
+        }
+        
+        pdf.addImage(chartImages[4], 'PNG', margin, yPos, fullWidthChartWidth, fullWidthChartHeight);
+        yPos += fullWidthChartHeight + 10;
+
+        if (yPos > pdfHeight - 80) {
+            pdf.addPage();
+            yPos = margin;
+        }
+
+        pdf.setFontSize(18);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text('Campaign Performance Data', margin, yPos);
+        yPos += 10;
+
+        updateProgress(95, 'Adding table data...');
+        pdf.autoTable({
+            startY: yPos,
+            head: [['Campaign Name', 'Channel', 'Impressions', 'Clicks', 'CTR', 'Conversions']],
+            body: campaignData.map(c => [c.campaignName, c.channel, c.impressions, c.clicks, c.ctr, c.conversions]),
+            theme: 'striped',
+            headStyles: { fillColor: [41, 128, 185] },
+            styles: { fontSize: 8 },
+            margin: { left: margin, right: margin }
+        });
+
+        updateProgress(100, 'Download starting...');
+        pdf.save('marketing-report.pdf');
+
+        update({
+            id: toastId,
+            title: "✅ Report Generated",
+            description: React.createElement('div', null, 
+                React.createElement('p', null, 'Your report has been downloaded.'),
+                React.createElement(Progress, { value: 100, className: "mt-2", indicatorClassName: "bg-highlight-green" })
+            ),
+        });
+
+    } catch (error) {
+        console.error("Failed to generate PDF:", error);
+        update({
+            id: toastId,
+            variant: 'destructive',
+            title: "❌ Error Generating Report",
+            description: "There was a problem generating the PDF. Please try again.",
+        });
+    }
 };

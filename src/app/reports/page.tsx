@@ -11,6 +11,7 @@ import { CustomerSegmentationChart } from '@/components/reports/customer-segment
 import { Button } from '@/components/ui/button';
 import { generatePdf } from '@/lib/pdf-generator';
 import { Campaign } from '@/components/datatable/columns';
+import { useToast } from '@/hooks/use-toast';
 
 const campaignData: Campaign[] = [
     {
@@ -19,7 +20,8 @@ const campaignData: Campaign[] = [
       impressions: 120500,
       clicks: 4820,
       ctr: "4.00%",
-      conversions: 241
+      conversions: 241,
+      startDate: "2024-06-01"
     },
     {
       campaignName: "New Product Launch",
@@ -27,7 +29,8 @@ const campaignData: Campaign[] = [
       impressions: 250000,
       clicks: 12500,
       ctr: "5.00%",
-      conversions: 750
+      conversions: 750,
+      startDate: "2024-05-15"
     },
     {
       campaignName: "Email Blast Q2",
@@ -35,7 +38,8 @@ const campaignData: Campaign[] = [
       impressions: 80000,
       clicks: 9600,
       ctr: "12.00%",
-      conversions: 1200
+      conversions: 1200,
+      startDate: "2024-04-10"
     },
     {
       campaignName: "Holiday Special",
@@ -43,7 +47,8 @@ const campaignData: Campaign[] = [
       impressions: 180000,
       clicks: 10800,
       ctr: "6.00%",
-      conversions: 540
+      conversions: 540,
+      startDate: "2023-11-20"
     },
     {
       campaignName: "Content Marketing Push",
@@ -51,7 +56,8 @@ const campaignData: Campaign[] = [
       impressions: 95000,
       clicks: 3800,
       ctr: "4.00%",
-      conversions: 190
+      conversions: 190,
+      startDate: "2024-02-01"
     },
     {
       campaignName: "Spring Collection",
@@ -59,7 +65,8 @@ const campaignData: Campaign[] = [
       impressions: 60000,
       clicks: 3000,
       ctr: "5.00%",
-      conversions: 210
+      conversions: 210,
+      startDate: "2024-03-01"
     },
     {
       campaignName: "Referral Program",
@@ -67,7 +74,8 @@ const campaignData: Campaign[] = [
       impressions: 30000,
       clicks: 1500,
       ctr: "5.00%",
-      conversions: 300
+      conversions: 300,
+      startDate: "2024-01-01"
     },
     {
       campaignName: "Black Friday Deals",
@@ -75,7 +83,8 @@ const campaignData: Campaign[] = [
       impressions: 400000,
       clicks: 28000,
       ctr: "7.00%",
-      conversions: 2800
+      conversions: 2800,
+      startDate: "2023-11-24"
     },
     {
       campaignName: "Back to School",
@@ -83,7 +92,8 @@ const campaignData: Campaign[] = [
       impressions: 150000,
       clicks: 7500,
       ctr: "5.00%",
-      conversions: 450
+      conversions: 450,
+      startDate: "2023-08-15"
     },
     {
       campaignName: "Webinar Promotion",
@@ -91,13 +101,16 @@ const campaignData: Campaign[] = [
       impressions: 50000,
       clicks: 6000,
       ctr: "12.00%",
-      conversions: 800
+      conversions: 800,
+      startDate: "2024-04-01"
     }
   ];
 
 export default function ReportsPage() {
+  const { toast } = useToast();
+
   const handleDownload = () => {
-    generatePdf(campaignData);
+    generatePdf(campaignData, toast);
   }
 
   return (
