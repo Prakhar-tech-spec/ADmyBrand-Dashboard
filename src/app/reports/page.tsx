@@ -8,6 +8,8 @@ import DashboardLayout from '@/components/layout/dashboard-layout';
 import { SalesLineChart } from '@/components/reports/sales-line-chart';
 import { RevenueBarChart } from '@/components/reports/revenue-bar-chart';
 import { TrafficSourcePieChart } from '@/components/reports/traffic-source-pie-chart';
+import { CampaignChannelChart } from '@/components/reports/campaign-channel-chart';
+import { CustomerSegmentationChart } from '@/components/reports/customer-segmentation-chart';
 
 export default function ReportsPage() {
 
@@ -28,6 +30,15 @@ export default function ReportsPage() {
         </div>
         <div>
             <TrafficSourcePieChart />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <div className="lg:col-span-2">
+            <CampaignChannelChart />
+        </div>
+        <div>
+            <CustomerSegmentationChart />
         </div>
       </div>
     </DashboardLayout>
