@@ -18,7 +18,7 @@ const captureChartAsImage = async (elementId: string): Promise<string> => {
     const canvas = await html2canvas(element, { 
         logging: false,
         useCORS: true,
-        scale: 2,
+        scale: 1.5,
         backgroundColor: null
     });
     return canvas.toDataURL('image/png', 0.9);
