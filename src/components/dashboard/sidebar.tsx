@@ -61,7 +61,7 @@ export function Sidebar() {
                 )}
               >
                 <div className={cn(
-                    "p-1.5 rounded-full flex items-center justify-center h-8 w-8",
+                    "p-1.5 rounded-full flex items-center justify-center h-10 w-10",
                     index === 0 ? "bg-primary-foreground/20" : "bg-primary-foreground/10"
                 )}>
                     <item.icon className="h-5 w-5" />
