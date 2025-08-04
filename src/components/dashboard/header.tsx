@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
 import { NotificationModal } from './notification-modal';
+import { useState } from 'react';
 
 const menuItems = [
     { name: 'Dashboard', href: '/', icon: Home },
@@ -32,6 +33,7 @@ export function Header({
   subtitle = 'Let’s go.',
 }: HeaderProps) {
   const pathname = usePathname();
+  const [hasNotifications, setHasNotifications] = useState(true);
 
   return (
     <header className="flex h-24 items-center justify-between px-4 md:px-6 lg:px-8 pt-8">
@@ -49,7 +51,7 @@ export function Header({
       </div>
 
       <div className="flex items-center gap-2">
-        <NotificationModal />
+        <NotificationModal hasNotifications={hasNotifications} setHasNotifications={setHasNotifications} />
         <div className="lg:hidden">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
