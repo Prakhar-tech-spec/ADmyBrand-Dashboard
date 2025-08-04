@@ -21,7 +21,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <BalanceCard showDropdown={true}/>
             <GrowthCard />
-            <BalanceCard title="Conversions" />
+            <GrowthCard title="Conversions" description="vs last month" label="Conversion Rate" value="+2.6%" />
             <BalanceCard title="Users" />
           </div>
         </div>
