@@ -89,10 +89,10 @@ const campaignData = [
   ];
   
 
-export default function DataTablePage() {
+export default function CampaignPerformancePage() {
   return (
     <DashboardLayout
-      title="Data Table"
+      title="Campaign Performance"
       subtitle="Here's your campaign performance data."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
