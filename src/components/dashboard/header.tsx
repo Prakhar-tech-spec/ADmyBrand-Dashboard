@@ -17,8 +17,7 @@ export function Header() {
         </Link>
       </div>
 
-      {/* Spacer to push icons to the right on desktop */}
-      <div className="flex-1" />
+      <div className="hidden lg:flex flex-1" />
 
       {/* Icons for all screen sizes */}
       <div className="flex items-center gap-2">
