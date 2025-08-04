@@ -36,18 +36,18 @@ export function Sidebar() {
 
   return (
     <aside className="lg:w-64 flex-col bg-primary text-primary-foreground p-4 h-full w-full flex">
-      <div className="flex h-16 flex-shrink-0 items-center justify-between px-2">
-        <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary-foreground">
-          <PayflowLogo className="h-8 w-8" />
-          <span className='text-2xl'>payflow</span>
-        </Link>
-        <Button variant="ghost" size="icon" className='text-primary-foreground/80'>
-            <Menu />
-        </Button>
-      </div>
-      <nav className="flex-1 py-4 flex flex-col gap-2">
-        <Card className="bg-primary-foreground/5 border-none rounded-2xl">
-          <CardContent className="p-1">
+      <nav className="flex-1 flex flex-col gap-4">
+        <Card className="bg-primary-foreground/5 border-none rounded-2xl flex flex-col">
+            <div className="flex h-16 flex-shrink-0 items-center justify-between px-4">
+                <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary-foreground">
+                <PayflowLogo className="h-8 w-8" />
+                <span className='text-2xl'>payflow</span>
+                </Link>
+                <Button variant="ghost" size="icon" className='text-primary-foreground/80'>
+                    <Menu />
+                </Button>
+            </div>
+          <CardContent className="p-2 pt-0">
             {menuItems.map((item, index) => (
               <Link
                 key={item.name}
