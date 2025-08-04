@@ -1,7 +1,7 @@
 'use client';
 
-import { TrendingDown } from 'lucide-react';
-import { Bar, BarChart, CartesianGrid, XAxis, Tooltip } from 'recharts';
+import { MoreHorizontal } from 'lucide-react';
+import { Bar, BarChart, CartesianGrid, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 import {
   Card,
@@ -14,6 +14,7 @@ import {
   ChartContainer,
   ChartTooltipContent,
 } from '@/components/ui/chart';
+import { Button } from '../ui/button';
 
 const chartData = [
   { month: 'Jan', expenses: 9000 },
@@ -27,47 +28,52 @@ const chartData = [
 const chartConfig = {
   expenses: {
     label: 'Expenses',
-    color: 'hsl(var(--chart-1))',
+    color: 'hsl(var(--accent))',
   },
 };
 
 export function ExpensesChart() {
   return (
-    <Card className="shadow-sm">
-      <CardHeader>
-        <CardTitle className="text-base font-medium text-secondary-foreground">Total Expenses</CardTitle>
-        <CardDescription>
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold text-primary">$72,421.84</span>
-            <span className="flex items-center text-sm font-medium text-highlight-red">
-              <TrendingDown className="mr-1 h-4 w-4" />
-              -8% vs Prev year
-            </span>
-          </div>
-        </CardDescription>
+    <Card className="shadow-sm rounded-3xl">
+      <CardHeader className="flex flex-row items-center justify-between">
+        <div>
+            <CardTitle className="text-base font-semibold text-foreground/90">Total Expenses</CardTitle>
+            <CardDescription>
+                <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-primary">$72,421.84</span>
+                    <span className="flex items-center text-sm font-medium text-highlight-red">
+                    -8% vs Prev year
+                    </span>
+                </div>
+            </CardDescription>
+        </div>
+        <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground">
+            <MoreHorizontal />
+        </Button>
       </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-40 w-full">
-          <BarChart accessibilityLayer data={chartData} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-            <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              fontSize={12}
-            />
-            <Tooltip
-                cursor={{ fill: 'hsl(var(--accent))', opacity: 0.2, radius: 4 }}
-                content={<ChartTooltipContent indicator="dot" />}
-            />
-            <Bar
-              dataKey="expenses"
-              fill="hsl(var(--chart-1))"
-              radius={[4, 4, 0, 0]}
-            />
-          </BarChart>
-        </ChartContainer>
+      <CardContent className='h-48'>
+        <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+                <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                <XAxis
+                dataKey="month"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                fontSize={12}
+                />
+                <Tooltip
+                    cursor={{ fill: 'hsl(var(--accent))', opacity: 0.2, radius: 4 }}
+                    content={<ChartTooltipContent indicator="dot" />}
+                />
+                <Bar
+                dataKey="expenses"
+                fill="hsl(var(--chart-1))"
+                radius={[4, 4, 0, 0]}
+                >
+                </Bar>
+            </BarChart>
+        </ResponsiveContainer>
       </CardContent>
     </Card>
   );

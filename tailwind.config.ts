@@ -22,8 +22,8 @@ export default {
         code: ['monospace'],
       },
       colors: {
-        'highlight-green': '#4CAF50',
-        'highlight-red': '#F44336',
+        'highlight-green': '#00C48C',
+        'highlight-red': '#FE5B5B',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

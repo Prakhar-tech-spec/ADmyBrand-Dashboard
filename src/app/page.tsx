@@ -6,6 +6,9 @@ import { Header } from '@/components/dashboard/header';
 import { IncomeChart } from '@/components/dashboard/income-chart';
 import { Sidebar } from '@/components/dashboard/sidebar';
 import { TransactionsTable } from '@/components/dashboard/transactions-table';
+import { Button } from '@/components/ui/button';
+import { GridIcon } from '@/components/icons/grid-icon';
+import { cn } from '@/lib/utils';
 
 export default function DashboardPage() {
   return (
@@ -13,23 +16,26 @@ export default function DashboardPage() {
       <Sidebar />
       <div className="flex flex-1 flex-col">
         <Header />
-        <main className="flex-1 space-y-6 p-4 md:p-6">
+        <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
           <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 lg:col-span-12 xl:col-span-3">
-              <BalanceCard />
-            </div>
-            <div className="col-span-12 lg:col-span-6 xl:col-span-5">
-              <ContactsCard />
-            </div>
-            <div className="col-span-12 lg:col-span-6 xl:col-span-4">
-              <ExchangeCard />
+            <div className="col-span-12 xl:col-span-4">
+              <div className="space-y-6">
+                <BalanceCard />
+                <ContactsCard />
+                 <Button variant="outline" className={cn("w-full h-14 rounded-2xl bg-card font-semibold text-secondary-foreground")}>
+                    <GridIcon className="mr-2" />
+                    Add or Manage widgets
+                </Button>
+              </div>
             </div>
             <div className="col-span-12 xl:col-span-8">
               <TransactionsTable />
             </div>
-            <div className="col-span-12 xl:col-span-4 flex flex-col gap-6">
-              <ExpensesChart />
-              <IncomeChart />
+
+            <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <ExpensesChart />
+                <IncomeChart />
+                <ExchangeCard />
             </div>
           </div>
         </main>
