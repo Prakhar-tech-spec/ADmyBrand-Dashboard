@@ -49,7 +49,7 @@ export function IncomeExpenseDonutChart({ income, expenses }: IncomeExpenseDonut
             A breakdown of your financial activity.
         </CardDescription>
       </CardHeader>
-      <CardContent className="h-48">
+      <CardContent className="h-64 sm:h-48">
         <ChartContainer config={chartConfig} className="w-full h-full">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
