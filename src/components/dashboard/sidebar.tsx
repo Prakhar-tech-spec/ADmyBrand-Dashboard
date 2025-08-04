@@ -19,8 +19,8 @@ import { cn } from '@/lib/utils';
 import { RadialChart } from '../icons/radial-chart';
 
 const menuItems = [
-  { name: 'Dashboard', href: '#', icon: Home },
-  { name: 'Reports', href: '#', icon: FileText },
+  { name: 'Dashboard', href: '/', icon: Home },
+  { name: 'Reports', href: '/reports', icon: FileText },
   { name: 'Data Table', href: '#', icon: Table },
   { name: 'Customers', href: '#', icon: Users },
   { name: 'Alerts & Logs', href: '#', icon: ShieldAlert },
@@ -49,14 +49,14 @@ export function Sidebar() {
                 href={item.href}
                 className={cn(
                   'flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium',
-                  index === 0
+                  pathname === item.href
                     ? 'bg-gradient-to-r from-[rgba(255,255,255,0.2)] to-[rgba(255,255,255,0.05)] text-primary-foreground'
                     : 'text-gray-300 hover:text-primary-foreground'
                 )}
               >
                 <div className={cn(
                     "p-1.5 rounded-full flex items-center justify-center h-10 w-10",
-                    index === 0 ? "bg-primary-foreground/20" : "bg-primary-foreground/10"
+                    pathname === item.href ? "bg-primary-foreground/20" : "bg-primary-foreground/10"
                 )}>
                     <item.icon className="h-5 w-5" />
                 </div>

@@ -21,7 +21,7 @@ export default function DashboardPage() {
     transition: {
       duration: 0.5,
       delay: index * 0.1,
-      ease: [0.25, 1, 0.5, 1], // easeOutExpo
+      ease: [0.25, 1, 0.5, 1],
     },
   });
 
