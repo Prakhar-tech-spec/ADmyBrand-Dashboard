@@ -10,7 +10,7 @@ import { TrafficSourcePieChart } from '@/components/reports/traffic-source-pie-c
 import { CampaignChannelChart } from '@/components/reports/campaign-channel-chart';
 import { CustomerSegmentationChart } from '@/components/reports/customer-segmentation-chart';
 import { Button } from '@/components/ui/button';
-import { generatePdf } from '@/lib/pdf-generator';
+import { generatePdf } from '@/lib/pdf-generator.tsx';
 import { Campaign } from '@/components/datatable/columns';
 import { useAppToast } from '@/context/toaster-context';
 

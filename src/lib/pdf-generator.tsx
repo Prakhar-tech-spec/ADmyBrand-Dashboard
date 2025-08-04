@@ -34,9 +34,9 @@ export const generatePdf = async (campaignData: Campaign[], toasterRef: React.Re
 
     const updateProgress = (progress: number, message: string) => {
         const toastContent = (
-            <div>
+            <div className='w-full'>
                 <p>{message}</p>
-                <Progress value={progress} className="mt-2" />
+                <Progress value={progress} className="mt-2" indicatorClassName={progress === 100 ? "bg-green-500" : ""} />
             </div>
         );
 
@@ -44,13 +44,15 @@ export const generatePdf = async (campaignData: Campaign[], toasterRef: React.Re
             toasterRef.current?.update(toastId, {
                 title: "Generating Report...",
                 message: toastContent,
-                duration: 999999
+                duration: 999999,
+                className: "swipe-disabled",
             });
         } else {
             toastId = toasterRef.current?.show({
                 title: "Generating Report...",
                 message: toastContent,
-                duration: 999999
+                duration: 999999,
+                className: "swipe-disabled",
             });
         }
     };
@@ -131,14 +133,14 @@ export const generatePdf = async (campaignData: Campaign[], toasterRef: React.Re
         updateProgress(100, 'Download starting...');
         pdf.save('marketing-report.pdf');
         
-        if(toastId) toasterRef.current?.dismiss(toastId);
-
-        toasterRef.current?.show({
-            title: "Report Generated",
-            message: "Your report has been downloaded.",
-            variant: "success",
-        });
-
+        setTimeout(() => {
+            if(toastId) toasterRef.current?.dismiss(toastId);
+            toasterRef.current?.show({
+                title: "Report Generated",
+                message: "Your report has been downloaded.",
+                variant: "success",
+            });
+        }, 1000)
 
     } catch (error) {
         console.error("Failed to generate PDF:", error);
