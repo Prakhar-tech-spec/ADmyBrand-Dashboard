@@ -31,8 +31,8 @@ export default {
           start: '#4A4443',
           end: '#242120',
         },
-        'highlight-green': '#00C48C',
-        'highlight-red': '#FE5B5B',
+        'highlight-green': '#00A676',
+        'highlight-red': '#B0413E',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

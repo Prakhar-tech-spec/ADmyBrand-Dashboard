@@ -18,11 +18,11 @@ import {
 const chartConfig = {
   income: {
     label: 'Income',
-    color: '#00C48C',
+    color: '#00A676',
   },
   expenses: {
     label: 'Expenses',
-    color: '#FE5B5B',
+    color: '#B0413E',
   },
 } satisfies ChartConfig;
 
