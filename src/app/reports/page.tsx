@@ -113,10 +113,10 @@ export default function ReportsPage() {
       </div>
       <div id="reports-content">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div id="sales-line-chart">
+            <div className="lg:col-span-2" id="sales-line-chart">
                 <SalesLineChart />
             </div>
-            <div id="revenue-bar-chart">
+            <div className="lg:col-span-2" id="revenue-bar-chart">
                 <RevenueBarChart />
             </div>
             <div id="traffic-source-pie-chart">
