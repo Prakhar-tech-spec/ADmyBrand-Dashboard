@@ -57,7 +57,7 @@ export function Sidebar() {
                   'flex items-center gap-3 rounded-full px-3 py-2.5 text-sm font-medium',
                   index === 0
                     ? 'bg-gradient-to-r from-[rgba(255,255,255,0.2)] to-[rgba(255,255,255,0.05)] text-primary-foreground'
-                    : 'text-gray-300 hover:bg-primary-foreground/10'
+                    : 'text-gray-300'
                 )}
               >
                 <div className={cn(
@@ -73,7 +73,7 @@ export function Sidebar() {
         </Card>
         
         <div className="px-1">
-            <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start h-12 border-dashed border-2 border-primary-foreground/20">
+            <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 w-full justify-start h-12 border-dashed border-2 border-primary-foreground/20">
                 <div className="p-1.5 rounded-lg bg-primary-foreground/10">
                     <GridIcon className='h-5 w-5' />
                 </div>
@@ -117,7 +117,7 @@ export function Sidebar() {
                             <span className='text-xs text-primary-foreground/60'>robertdoe@email.com</span>
                         </div>
                     </div>
-                    <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-foreground h-8 w-8">
+                    <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8">
                         <Settings className="h-5 w-5" />
                     </Button>
                 </div>
