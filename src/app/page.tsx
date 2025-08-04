@@ -6,6 +6,7 @@ import {
   Receipt,
   Settings,
   History,
+  Menu,
 } from 'lucide-react';
 
 import { BalanceCard } from '@/components/dashboard/balance-card';
@@ -21,6 +22,14 @@ import { GridIcon } from '@/components/icons/grid-icon';
 import { cn } from '@/lib/utils';
 import { ChartContainer } from '@/components/ui/chart';
 import FloatingActionMenu from '@/components/ui/floating-action-menu';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 
 const menuItems = [
   { name: 'Dashboard', href: '#', icon: <LayoutDashboard className="w-4 h-4" /> },
