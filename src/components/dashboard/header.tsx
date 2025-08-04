@@ -1,12 +1,27 @@
 'use client';
 
-import { Bell, Command, Mail, Search } from 'lucide-react';
+import { Bell, Command, Mail, Search, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sidebar } from './sidebar';
 
 export function Header() {
   return (
     <header className="sticky top-0 z-10 flex h-24 items-center justify-between gap-4 bg-background/80 backdrop-blur-sm px-4 md:px-6 lg:px-8">
+        <div className="lg:hidden">
+            <Sheet>
+                <SheetTrigger asChild>
+                    <Button variant="outline" size="icon" className="rounded-full h-11 w-11 bg-card">
+                        <Menu className="h-5 w-5" />
+                        <span className="sr-only">Toggle navigation menu</span>
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="flex flex-col p-0">
+                    <Sidebar />
+                </SheetContent>
+            </Sheet>
+        </div>
       <div className="relative flex-1">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
         <Input

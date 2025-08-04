@@ -16,8 +16,8 @@ export default function DashboardPage() {
   return (
     <div className="flex h-screen w-full bg-primary font-sans">
       <Sidebar />
-      <div className="flex flex-1 flex-col p-2 overflow-hidden">
-        <div className="flex flex-1 flex-col bg-background rounded-3xl overflow-auto">
+      <div className="flex flex-1 flex-col lg:p-2 overflow-hidden">
+        <div className="flex flex-1 flex-col bg-background lg:rounded-3xl overflow-auto">
             <Header />
             <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
             <div className="grid grid-cols-12 gap-6">

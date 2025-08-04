@@ -33,7 +33,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden lg:flex lg:w-72 flex-col bg-primary text-primary-foreground p-4">
+    <aside className="lg:w-72 flex-col bg-primary text-primary-foreground p-4 h-full w-full lg:flex">
       <div className="flex h-16 flex-shrink-0 items-center justify-between px-2">
         <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary-foreground">
           <PayflowLogo className="h-8 w-8" />
