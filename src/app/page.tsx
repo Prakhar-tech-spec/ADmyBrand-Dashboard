@@ -8,6 +8,7 @@ import { IncomeChart } from '@/components/dashboard/income-chart';
 import { ExchangeCard } from '@/components/dashboard/exchange-card';
 import { ChartContainer } from '@/components/ui/chart';
 import DashboardLayout from '@/components/layout/dashboard-layout';
+import { GrowthCard } from '@/components/dashboard/growth-card';
 
 export default function DashboardPage() {
   return (
@@ -19,7 +20,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-2">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <BalanceCard showDropdown={true}/>
-            <BalanceCard title="Growth" />
+            <GrowthCard />
             <BalanceCard title="Conversions" />
             <BalanceCard title="Users" />
           </div>
