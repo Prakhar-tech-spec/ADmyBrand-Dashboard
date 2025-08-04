@@ -29,6 +29,12 @@ const chartConfig = {
     direct: { label: 'Direct', color: 'hsl(var(--chart-4))' },
 } satisfies ChartConfig;
 
+const CustomLegend = () => {
+    return (
+        <p className='text-center mt-2 text-sm text-muted-foreground'>Traffic Sources Distribution</p>
+    );
+};
+
 
 export function TrafficSourcePieChart() {
   return (
@@ -62,7 +68,7 @@ export function TrafficSourcePieChart() {
                   <Cell key={`cell-${entry.name}`} fill={entry.color} />
                 ))}
               </Pie>
-              <Legend content={<p className='text-center mt-2 text-sm text-muted-foreground'>Traffic Sources Distribution</p>} />
+              <Legend content={<CustomLegend />} />
             </PieChart>
           </ResponsiveContainer>
         </ChartContainer>
