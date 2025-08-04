@@ -2,9 +2,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { LayoutDashboard, CreditCard, Receipt, Settings, History } from 'lucide-react';
+import { LayoutDashboard, FileText, Table, Users, ShieldAlert } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { Header } from '@/components/dashboard/header';
 import { Sidebar } from '@/components/dashboard/sidebar';
@@ -14,13 +14,6 @@ import { DashboardSkeleton } from '@/components/skeletons/dashboard-skeleton';
 import { ReportsSkeleton } from '@/components/skeletons/reports-skeleton';
 import { TableSkeleton } from '@/components/skeletons/table-skeleton';
 
-const menuItems = [
-  { name: 'Dashboard', href: '#', icon: <LayoutDashboard className="w-4 h-4" /> },
-  { name: 'Cards', href: '#', icon: <CreditCard className="w-4 h-4" /> },
-  { name: 'Receipts', href: '#', icon: <Receipt className="w-4 h-4" /> },
-  { name: 'Manage', href: '#', icon: <Settings className="w-4 h-4" /> },
-  { name: 'History', href: '#', icon: <History className="w-4 h-4" /> },
-];
 
 type DashboardLayoutProps = {
   children: React.ReactNode;
@@ -30,7 +23,16 @@ type DashboardLayoutProps = {
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  const menuItems = [
+    { name: 'Dashboard', href: '/', icon: <LayoutDashboard className="w-4 h-4" /> },
+    { name: 'Reports', href: '/reports', icon: <FileText className="w-4 h-4" /> },
+    { name: 'Campaigns', href: '/campaignperformance', icon: <Table className="w-4 h-4" /> },
+    { name: 'Customers', href: '/customers', icon: <Users className="w-4 h-4" /> },
+    { name: 'Alerts', href: '/alerts', icon: <ShieldAlert className="w-4 h-4" /> },
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -91,7 +93,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
               label: item.name,
               Icon: item.icon,
               onClick: () => {
-                console.log(`${item.name} clicked`);
+                router.push(item.href);
               },
             }))}
           />
