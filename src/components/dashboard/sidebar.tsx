@@ -81,16 +81,23 @@ export function Sidebar() {
         </div>
       </nav>
       <div className="mt-auto flex flex-col gap-4">
-        <Card className="bg-primary-foreground/10 border-none rounded-2xl">
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between text-primary-foreground">
-              <span className="text-sm font-medium text-primary-foreground">Complete profile</span>
-              <span className="text-sm font-bold text-primary-foreground">40%</span>
+        <Card className="bg-card text-card-foreground border-none rounded-3xl">
+          <CardContent className="p-4 space-y-4">
+            <div className="flex items-center gap-4">
+              <div className="relative h-14 w-14">
+                <RadialChart progress={40} className="h-full w-full" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-sm font-bold text-foreground">40%</span>
+                </div>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-foreground">Complete profile</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Complete your profile to unlock all features
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-primary-foreground/60 mt-1 mb-3">
-              Complete your profile to unlock all features
-            </p>
-            <Button className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 rounded-lg">
+            <Button className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-xl h-12 font-semibold">
               Verify identity
             </Button>
           </CardContent>

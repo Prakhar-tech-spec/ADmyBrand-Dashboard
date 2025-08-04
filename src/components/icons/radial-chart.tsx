@@ -11,7 +11,7 @@ export const RadialChart = ({
   return (
     <svg width="100" height="100" viewBox="0 0 100 100" {...props}>
       <circle
-        className="text-primary-foreground/10"
+        className="text-secondary"
         strokeWidth="10"
         stroke="currentColor"
         fill="transparent"
@@ -20,7 +20,7 @@ export const RadialChart = ({
         cy="50"
       />
       <circle
-        className="text-primary-foreground"
+        className="text-foreground"
         strokeWidth="10"
         strokeDasharray={circumference}
         strokeDashoffset={offset}
