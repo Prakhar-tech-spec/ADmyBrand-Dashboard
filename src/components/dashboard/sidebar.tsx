@@ -104,9 +104,11 @@ export function Sidebar() {
                             <span className='text-xs text-primary-foreground/60'>robertdoe@email.com</span>
                         </div>
                     </div>
-                    <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8 hover:text-primary-foreground hover:bg-transparent">
-                        <Settings className="h-5 w-5" />
-                    </Button>
+                    <Link href="/settings">
+                        <Button variant="ghost" size="icon" className="text-gray-400 h-8 w-8 hover:text-primary-foreground hover:bg-transparent">
+                            <Settings className="h-5 w-5" />
+                        </Button>
+                    </Link>
                 </div>
             </CardContent>
         </Card>
