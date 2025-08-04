@@ -72,14 +72,6 @@ export function Sidebar() {
           </CardContent>
         </Card>
         
-        <div className="px-1">
-            <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 w-full justify-start h-12 border-dashed border-2 border-primary-foreground/20 hover:text-primary-foreground hover:bg-transparent">
-                <div className="p-1.5 rounded-lg bg-primary-foreground/10">
-                    <GridIcon className='h-5 w-5' />
-                </div>
-                Add a section
-            </Button>
-        </div>
       </nav>
       <div className="mt-auto flex flex-col gap-4 p-2">
         <Card className="bg-card text-card-foreground border-none rounded-3xl">
