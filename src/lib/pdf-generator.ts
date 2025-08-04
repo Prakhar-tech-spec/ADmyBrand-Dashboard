@@ -34,6 +34,7 @@ export const generatePdf = async (campaignData: Campaign[], toast: typeof toastF
             React.createElement('p', null, 'Initializing...'),
             React.createElement(Progress, { value: 0, className: "mt-2" })
         ),
+        className: 'swipe-disabled',
     });
 
     try {
@@ -45,6 +46,7 @@ export const generatePdf = async (campaignData: Campaign[], toast: typeof toastF
                     React.createElement('p', null, message),
                     React.createElement(Progress, { value: progress, className: "mt-2" })
                 ),
+                className: 'swipe-disabled',
             });
         };
         
@@ -128,6 +130,7 @@ export const generatePdf = async (campaignData: Campaign[], toast: typeof toastF
                 React.createElement('p', null, 'Your report has been downloaded.'),
                 React.createElement(Progress, { value: 100, className: "mt-2", indicatorClassName: "bg-highlight-green" })
             ),
+            className: '', // Re-enable swipe
         });
 
     } catch (error) {
@@ -137,6 +140,7 @@ export const generatePdf = async (campaignData: Campaign[], toast: typeof toastF
             variant: 'destructive',
             title: "❌ Error Generating Report",
             description: "There was a problem generating the PDF. Please try again.",
+            className: '', // Re-enable swipe
         });
     }
 };

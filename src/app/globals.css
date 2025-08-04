@@ -79,4 +79,13 @@
     white-space: nowrap;
     border-width: 0;
   }
+
+  /* Disable swipe for specific toasts */
+  .swipe-disabled {
+    pointer-events: none;
+  }
+
+  .swipe-disabled [data-swipe-direction] {
+    pointer-events: auto;
+  }
 }
