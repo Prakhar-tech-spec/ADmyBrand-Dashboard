@@ -1,7 +1,6 @@
 
 'use client';
 
-import { ArrowDown, ArrowUp } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -17,13 +16,13 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import { Button } from '../ui/button';
 
 type BalanceCardProps = {
     title?: string;
+    showDropdown?: boolean;
 }
 
-export function BalanceCard({ title = "Revenue" }: BalanceCardProps) {
+export function BalanceCard({ title = "Revenue", showDropdown = false }: BalanceCardProps) {
   return (
     <Card className="shadow-sm rounded-3xl bg-gradient-to-b from-balance-card-shiny-start to-balance-card-shiny-end text-primary-foreground border-none p-2">
       <CardHeader className="pb-4 pt-4 px-4">
@@ -34,18 +33,20 @@ export function BalanceCard({ title = "Revenue" }: BalanceCardProps) {
                 </CardTitle>
                 <CardDescription className='text-primary-foreground/70'>Available for use</CardDescription>
             </div>
-            <Select defaultValue="usd">
-                <SelectTrigger className="w-auto bg-transparent border-none font-semibold rounded-full h-9 px-2 gap-2">
-                    <div className="flex items-center gap-2">
-                        <USFlagIcon className="h-5 w-5 rounded-full" />
-                        <SelectValue />
-                    </div>
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="usd">USD</SelectItem>
-                    <SelectItem value="eur">EUR</SelectItem>
-                </SelectContent>
-            </Select>
+            {showDropdown && (
+              <Select defaultValue="usd">
+                  <SelectTrigger className="w-auto bg-transparent border-none font-semibold rounded-full h-9 px-2 gap-2">
+                      <div className="flex items-center gap-2">
+                          <USFlagIcon className="h-5 w-5 rounded-full" />
+                          <SelectValue />
+                      </div>
+                  </SelectTrigger>
+                  <SelectContent>
+                      <SelectItem value="usd">USD</SelectItem>
+                      <SelectItem value="eur">EUR</SelectItem>
+                  </SelectContent>
+              </Select>
+            )}
         </div>
       </CardHeader>
       <CardContent className="p-0">

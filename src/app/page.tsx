@@ -18,7 +18,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            <BalanceCard />
+            <BalanceCard showDropdown={true}/>
             <BalanceCard title="Growth" />
             <BalanceCard title="Conversions" />
             <BalanceCard title="Users" />
