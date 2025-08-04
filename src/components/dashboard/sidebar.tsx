@@ -45,7 +45,7 @@ export function Sidebar() {
             <Menu />
         </Button>
       </div>
-      <nav className="flex-1 space-y-2 py-4">
+      <nav className="flex-1 space-y-1 py-4">
         {menuItems.map((item, index) => (
           <Link
             key={item.name}
@@ -66,32 +66,51 @@ export function Sidebar() {
             {item.name}
           </Link>
         ))}
-        <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start mt-4! h-12 border-dashed border-2 border-primary-foreground/20">
-            <div className="p-1.5 rounded-lg bg-primary-foreground/10">
-                <GridIcon className='h-5 w-5' />
-            </div>
-            Add a section
-        </Button>
-      </nav>
-      <Card className="bg-primary-foreground/5 border-none mt-auto">
-        <CardContent className="p-3">
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <Avatar className="h-10 w-10">
-                    <AvatarImage src="https://placehold.co/40x40.png" alt="Robert Doe" data-ai-hint="man portrait"/>
-                    <AvatarFallback>RD</AvatarFallback>
-                    </Avatar>
-                    <div className='flex flex-col'>
-                        <span className='font-semibold text-sm'>Robert Doe</span>
-                        <span className='text-xs text-primary-foreground/60'>robertdoe@email.com</span>
-                    </div>
+        <div className="pt-2">
+            <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start h-12 border-dashed border-2 border-primary-foreground/20">
+                <div className="p-1.5 rounded-lg bg-primary-foreground/10">
+                    <GridIcon className='h-5 w-5' />
                 </div>
-                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-foreground h-8 w-8">
-                    <ChevronDown className="h-5 w-5" />
-                </Button>
+                Add a section
+            </Button>
+        </div>
+      </nav>
+      <div className="mt-auto flex flex-col gap-4">
+        <Card className="bg-primary-foreground/10 border-none rounded-2xl">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">Complete profile</span>
+              <span className="text-sm font-bold">40%</span>
             </div>
-        </CardContent>
-      </Card>
+            <p className="text-xs text-primary-foreground/60 mt-1 mb-3">
+              Complete your profile to unlock all features
+            </p>
+            <Button className="w-full bg-primary-foreground text-primary hover:bg-primary-foreground/90 rounded-lg">
+              Verify identity
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-primary-foreground/5 border-none">
+            <CardContent className="p-3">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10">
+                        <AvatarImage src="https://placehold.co/40x40.png" alt="Robert Doe" data-ai-hint="man portrait"/>
+                        <AvatarFallback>RD</AvatarFallback>
+                        </Avatar>
+                        <div className='flex flex-col'>
+                            <span className='font-semibold text-sm'>Robert Doe</span>
+                            <span className='text-xs text-primary-foreground/60'>robertdoe@email.com</span>
+                        </div>
+                    </div>
+                    <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-foreground h-8 w-8">
+                        <Settings className="h-5 w-5" />
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+      </div>
     </aside>
   );
 }
