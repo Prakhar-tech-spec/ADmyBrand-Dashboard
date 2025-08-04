@@ -12,6 +12,7 @@ import FloatingActionMenu from '@/components/ui/floating-action-menu';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { DashboardSkeleton } from '@/components/skeletons/dashboard-skeleton';
 import { ReportsSkeleton } from '@/components/skeletons/reports-skeleton';
+import { TableSkeleton } from '@/components/skeletons/table-skeleton';
 
 const menuItems = [
   { name: 'Dashboard', href: '#', icon: <LayoutDashboard className="w-4 h-4" /> },
@@ -40,6 +41,9 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
   const getSkeleton = () => {
     if (pathname === '/reports') {
       return <ReportsSkeleton />;
+    }
+    if (pathname === '/campaignperformance' || pathname === '/customers' || pathname === '/alerts') {
+      return <TableSkeleton />;
     }
     // Default to dashboard skeleton for root and other pages
     return <DashboardSkeleton />;

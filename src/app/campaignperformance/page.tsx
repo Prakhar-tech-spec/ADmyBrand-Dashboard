@@ -1,7 +1,6 @@
 
 'use client';
 
-import { motion } from 'framer-motion';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { CampaignPerformanceTable } from '@/components/datatable/campaign-performance-table';
 

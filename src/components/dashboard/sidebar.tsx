@@ -23,7 +23,7 @@ const menuItems = [
   { name: 'Reports', href: '/reports', icon: FileText },
   { name: 'Campaign Performance', href: '/campaignperformance', icon: Table },
   { name: 'Customers', href: '/customers', icon: Users },
-  { name: 'Alerts & Logs', href: '#', icon: ShieldAlert },
+  { name: 'Alerts & Logs', href: '/alerts', icon: ShieldAlert },
 ];
 
 export function Sidebar() {
