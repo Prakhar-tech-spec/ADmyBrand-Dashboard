@@ -19,49 +19,42 @@ export default function DashboardPage() {
       title="You're back!"
       subtitle="Let’s go."
     >
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-12 xl:col-span-4">
-          <div className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             <BalanceCard />
             <ContactsCard />
-            <Button
-              variant="outline"
-              className={cn(
-                'w-full h-14 rounded-2xl bg-card font-semibold text-secondary-foreground'
-              )}
-            >
-              <GridIcon className="mr-2" />
-              Add or Manage widgets
-            </Button>
+            <BalanceCard />
+            <ContactsCard />
           </div>
         </div>
-        <div className="col-span-12 xl:col-span-8">
+        <div className="lg:col-span-1">
           <TransactionsTable />
         </div>
+      </div>
 
-        <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ChartContainer
-            config={{
-              expenses: {
-                label: 'Expenses',
-                color: 'hsl(var(--chart-1))',
-              },
-            }}
-          >
-            <ExpensesChart />
-          </ChartContainer>
-          <ChartContainer
-            config={{
-              income: {
-                label: 'Income',
-                color: 'hsl(var(--chart-2))',
-              },
-            }}
-          >
-            <IncomeChart />
-          </ChartContainer>
-          <ExchangeCard />
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        <ChartContainer
+          config={{
+            expenses: {
+              label: 'Expenses',
+              color: 'hsl(var(--chart-1))',
+            },
+          }}
+        >
+          <ExpensesChart />
+        </ChartContainer>
+        <ChartContainer
+          config={{
+            income: {
+              label: 'Income',
+              color: 'hsl(var(--chart-2))',
+            },
+          }}
+        >
+          <IncomeChart />
+        </ChartContainer>
+        <ExchangeCard />
       </div>
     </DashboardLayout>
   );
