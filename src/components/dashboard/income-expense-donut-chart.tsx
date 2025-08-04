@@ -37,8 +37,6 @@ export function IncomeExpenseDonutChart({ income, expenses }: IncomeExpenseDonut
     { name: 'Expenses', value: expenses, fill: chartConfig.expenses.color },
   ];
 
-  const total = income + expenses;
-
   return (
     <Card className="h-full shadow-sm rounded-3xl">
       <CardHeader className="pb-4">
@@ -51,6 +49,7 @@ export function IncomeExpenseDonutChart({ income, expenses }: IncomeExpenseDonut
       </CardHeader>
       <CardContent className="h-64 sm:h-48">
         <ChartContainer config={chartConfig} className="w-full h-full">
+          <div className="relative w-full h-full">
             <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                 <Tooltip
@@ -74,6 +73,17 @@ export function IncomeExpenseDonutChart({ income, expenses }: IncomeExpenseDonut
                 </Pie>
                 </PieChart>
             </ResponsiveContainer>
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <div className="flex items-center text-sm">
+                    <span className="w-2.5 h-2.5 rounded-full mr-2" style={{ backgroundColor: chartConfig.income.color }}></span>
+                    Income
+                </div>
+                <div className="flex items-center text-sm">
+                    <span className="w-2.5 h-2.5 rounded-full mr-2" style={{ backgroundColor: chartConfig.expenses.color }}></span>
+                    Expenses
+                </div>
+            </div>
+          </div>
         </ChartContainer>
       </CardContent>
     </Card>
