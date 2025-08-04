@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import {
+  ChartConfig,
   ChartContainer,
   ChartTooltipContent,
 } from '@/components/ui/chart';
@@ -29,7 +30,7 @@ const chartConfig = {
     label: 'Income',
     color: 'hsl(var(--chart-2))',
   },
-};
+} satisfies ChartConfig;
 
 export function IncomeChart() {
   return (
@@ -51,8 +52,8 @@ export function IncomeChart() {
         </Button>
       </CardHeader>
       <CardContent className="h-48">
-        <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+        <ChartContainer config={chartConfig} className="w-full h-full">
+            <BarChart accessibilityLayer data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                 <CartesianGrid vertical={false} strokeDasharray="3 3" />
                 <XAxis
                 dataKey="month"
@@ -66,12 +67,12 @@ export function IncomeChart() {
                 content={<ChartTooltipContent indicator="dot" />}
                 />
                 <Bar
-                dataKey="income"
-                fill="hsl(var(--chart-2))"
-                radius={[4, 4, 0, 0]}
+                  dataKey="income"
+                  fill="var(--color-income)"
+                  radius={[4, 4, 0, 0]}
                 />
             </BarChart>
-        </ResponsiveContainer>
+        </ChartContainer>
       </CardContent>
     </Card>
   );

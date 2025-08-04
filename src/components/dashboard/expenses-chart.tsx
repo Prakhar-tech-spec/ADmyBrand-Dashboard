@@ -13,6 +13,7 @@ import {
 import {
   ChartContainer,
   ChartTooltipContent,
+  ChartConfig
 } from '@/components/ui/chart';
 import { Button } from '../ui/button';
 
@@ -28,9 +29,9 @@ const chartData = [
 const chartConfig = {
   expenses: {
     label: 'Expenses',
-    color: 'hsl(var(--accent))',
+    color: 'hsl(var(--chart-1))',
   },
-};
+} satisfies ChartConfig;
 
 export function ExpensesChart() {
   return (
@@ -52,8 +53,8 @@ export function ExpensesChart() {
         </Button>
       </CardHeader>
       <CardContent className='h-48'>
-        <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+        <ChartContainer config={chartConfig} className="w-full h-full">
+            <BarChart accessibilityLayer data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
                 <CartesianGrid vertical={false} strokeDasharray="3 3" />
                 <XAxis
                 dataKey="month"
@@ -67,13 +68,12 @@ export function ExpensesChart() {
                     content={<ChartTooltipContent indicator="dot" />}
                 />
                 <Bar
-                dataKey="expenses"
-                fill="hsl(var(--chart-1))"
-                radius={[4, 4, 0, 0]}
-                >
-                </Bar>
+                  dataKey="expenses"
+                  fill="var(--color-expenses)"
+                  radius={[4, 4, 0, 0]}
+                />
             </BarChart>
-        </ResponsiveContainer>
+        </ChartContainer>
       </CardContent>
     </Card>
   );
