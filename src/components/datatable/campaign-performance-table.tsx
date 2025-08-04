@@ -159,8 +159,10 @@ export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps
       </div>
       <div className="flex items-center justify-end space-x-2 py-4 px-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredSelectedRowModel().rows.length > 0 ? 
+            `${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} row(s) selected.` :
+            `${table.getFilteredRowModel().rows.length} total rows.`
+          }
         </div>
         <div className="space-x-2">
           <Button
