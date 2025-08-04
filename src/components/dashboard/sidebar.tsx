@@ -35,8 +35,8 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="lg:w-64 flex-col bg-primary text-primary-foreground h-full w-full flex">
-      <nav className="flex-1 flex flex-col gap-4 p-2">
+    <aside className="lg:w-64 flex-col bg-primary text-primary-foreground h-full w-full flex p-2">
+      <nav className="flex-1 flex flex-col gap-4">
         <Card className="bg-gradient-to-br from-sidebar-card-start to-sidebar-card-end border-none rounded-3xl flex flex-col">
             <div className="flex h-16 flex-shrink-0 items-center justify-between px-4">
                 <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary-foreground">
