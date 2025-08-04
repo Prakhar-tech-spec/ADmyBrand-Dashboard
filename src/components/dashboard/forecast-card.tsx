@@ -8,6 +8,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -85,6 +86,11 @@ export function ForecastCard({
           </div>
         )}
       </CardContent>
+      <CardFooter>
+        <p className="text-xs text-muted-foreground text-center w-full">
+            *AI can make mistakes. It&apos;s in Beta version.
+        </p>
+      </CardFooter>
     </Card>
   );
 }
