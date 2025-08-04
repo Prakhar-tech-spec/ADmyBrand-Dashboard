@@ -12,6 +12,7 @@ import {
   Settings,
   Plus,
   Menu,
+  ChevronDown,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -72,19 +73,25 @@ export function Sidebar() {
             Add a section
         </Button>
       </nav>
-      <div className="space-y-4 p-2">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Avatar className="h-10 w-10">
-              <AvatarImage src="https://placehold.co/40x40.png" alt="Robert Doe" data-ai-hint="man portrait"/>
-              <AvatarFallback>RD</AvatarFallback>
-            </Avatar>
-          </div>
-          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-foreground">
-            <Settings className="h-5 w-5" />
-          </Button>
-        </div>
-      </div>
+      <Card className="bg-primary-foreground/5 border-none mt-auto">
+        <CardContent className="p-3">
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    <Avatar className="h-10 w-10">
+                    <AvatarImage src="https://placehold.co/40x40.png" alt="Robert Doe" data-ai-hint="man portrait"/>
+                    <AvatarFallback>RD</AvatarFallback>
+                    </Avatar>
+                    <div className='flex flex-col'>
+                        <span className='font-semibold text-sm'>Robert Doe</span>
+                        <span className='text-xs text-primary-foreground/60'>robertdoe@email.com</span>
+                    </div>
+                </div>
+                <Button variant="ghost" size="icon" className="text-gray-400 hover:text-primary-foreground h-8 w-8">
+                    <ChevronDown className="h-5 w-5" />
+                </Button>
+            </div>
+        </CardContent>
+      </Card>
     </aside>
   );
 }
