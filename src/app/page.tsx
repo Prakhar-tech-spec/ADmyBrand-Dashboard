@@ -6,7 +6,7 @@ import { ContactsCard } from '@/components/dashboard/contacts-card';
 import { ExchangeCard } from '@/components/dashboard/exchange-card';
 import { ExpensesChart } from '@/components/dashboard/expenses-chart';
 import { IncomeChart } from '@/components/dashboard/income-chart';
-import { TransactionsTable } from '@/components/dashboard/transactions-table';
+import { NotesCard } from '@/components/dashboard/notes-card';
 import { Button } from '@/components/ui/button';
 import { GridIcon } from '@/components/icons/grid-icon';
 import { cn } from '@/lib/utils';
@@ -29,7 +29,7 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="lg:col-span-1">
-          <TransactionsTable />
+          <NotesCard />
         </div>
       </div>
 
