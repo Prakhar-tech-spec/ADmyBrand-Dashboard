@@ -24,7 +24,6 @@ const menuItems = [
   { name: 'Campaign Performance', href: '/campaignperformance', icon: Table },
   { name: 'Customers', href: '/customers', icon: Users },
   { name: 'Alerts & Logs', href: '/alerts', icon: ShieldAlert },
-  { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
 export function Sidebar() {
