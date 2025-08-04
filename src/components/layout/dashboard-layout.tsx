@@ -8,6 +8,8 @@ import {
   Settings,
   History,
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
 import { Header } from '@/components/dashboard/header';
 import { Sidebar } from '@/components/dashboard/sidebar';
@@ -29,6 +31,8 @@ type DashboardLayoutProps = {
 };
 
 export default function DashboardLayout({ children, title, subtitle }: DashboardLayoutProps) {
+  const pathname = usePathname();
+
   return (
     <div className="flex h-screen w-full bg-background lg:bg-primary font-sans">
       <SidebarProvider>
@@ -38,9 +42,18 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         <div className="flex flex-1 flex-col overflow-hidden">
           <div className="flex flex-1 flex-col bg-background lg:rounded-3xl overflow-auto lg:m-4">
               <Header title={title} subtitle={subtitle} />
-              <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
-                {children}
-              </main>
+              <AnimatePresence mode="wait">
+                <motion.main
+                  key={pathname}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.25, ease: 'easeInOut' }}
+                  className="flex-1 space-y-4 p-4 md:p-6 lg:p-8"
+                >
+                  {children}
+                </motion.main>
+              </AnimatePresence>
           </div>
         </div>
         <div className="lg:hidden">

@@ -15,16 +15,6 @@ export default function DashboardPage() {
   const totalIncome = 98248.44;
   const totalExpenses = 72421.84;
 
-  const cardAnimation = (index: number) => ({
-    initial: { opacity: 0, y: 20, scale: 0.98 },
-    animate: { opacity: 1, y: 0, scale: 1 },
-    transition: {
-      duration: 0.5,
-      delay: index * 0.1,
-      ease: [0.25, 1, 0.5, 1],
-    },
-  });
-
   return (
     <DashboardLayout
       title="You're back!"
@@ -33,27 +23,19 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2">
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            <motion.div {...cardAnimation(0)}>
-              <BalanceCard showDropdown={true}/>
-            </motion.div>
-            <motion.div {...cardAnimation(1)}>
-              <GrowthCard />
-            </motion.div>
-            <motion.div {...cardAnimation(2)}>
-              <GrowthCard title="Conversions" description="vs last month" label="Conversion Rate" value="+2.6%" />
-            </motion.div>
-            <motion.div {...cardAnimation(3)}>
-              <BalanceCard title="Users" value="1,354" label="Active Users" />
-            </motion.div>
+            <BalanceCard showDropdown={true}/>
+            <GrowthCard />
+            <GrowthCard title="Conversions" description="vs last month" label="Conversion Rate" value="+2.6%" />
+            <BalanceCard title="Users" value="1,354" label="Active Users" />
           </div>
         </div>
-        <motion.div className="lg:col-span-1" {...cardAnimation(4)}>
+        <div className="lg:col-span-1">
           <NotesCard />
-        </motion.div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-        <motion.div {...cardAnimation(5)}>
+        <div>
           <ChartContainer
             config={{
               expenses: {
@@ -64,8 +46,8 @@ export default function DashboardPage() {
           >
             <ExpensesChart />
           </ChartContainer>
-        </motion.div>
-        <motion.div {...cardAnimation(6)}>
+        </div>
+        <div>
           <ChartContainer
             config={{
               income: {
@@ -76,10 +58,10 @@ export default function DashboardPage() {
           >
             <IncomeChart />
           </ChartContainer>
-        </motion.div>
-        <motion.div {...cardAnimation(7)}>
+        </div>
+        <div>
           <IncomeExpenseDonutChart income={totalIncome} expenses={totalExpenses} />
-        </motion.div>
+        </div>
       </div>
     </DashboardLayout>
   );
