@@ -33,33 +33,9 @@ export default function DashboardPage() {
         </div>
 
         <div className="col-span-1 md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="md:col-span-1">
-            <ChartContainer
-              config={{
-                expenses: {
-                  label: 'Expenses',
-                  color: 'hsl(var(--chart-1))',
-                },
-              }}
-            >
-              <ExpensesChart />
-            </ChartContainer>
-          </div>
-          <div className="md:col-span-1">
-            <ChartContainer
-              config={{
-                income: {
-                  label: 'Income',
-                  color: 'hsl(var(--chart-2))',
-                },
-              }}
-            >
-              <IncomeChart />
-            </ChartContainer>
-          </div>
-          <div className="md:col-span-2 lg:col-span-1">
-            <IncomeExpenseDonutChart income={totalIncome} expenses={totalExpenses} />
-          </div>
+          <ExpensesChart />
+          <IncomeChart />
+          <IncomeExpenseDonutChart income={totalIncome} expenses={totalExpenses} />
         </div>
       </div>
     </DashboardLayout>
