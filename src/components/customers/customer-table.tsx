@@ -36,9 +36,10 @@ import { Customer, columns } from "./columns"
 
 type CustomerTableProps = {
     data: Customer[];
+    children?: React.ReactNode;
 }
 
-export function CustomerTable({ data }: CustomerTableProps) {
+export function CustomerTable({ data, children }: CustomerTableProps) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -68,7 +69,7 @@ export function CustomerTable({ data }: CustomerTableProps) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center p-4">
+      <div className="flex items-center p-4 gap-2">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -77,6 +78,7 @@ export function CustomerTable({ data }: CustomerTableProps) {
           }
           className="max-w-sm"
         />
+        {children}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">

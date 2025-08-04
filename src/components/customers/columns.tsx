@@ -103,6 +103,9 @@ export const columns: ColumnDef<Customer>[] = [
         </Button>
       ),
     cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
+    filterFn: (row, id, value) => {
+        return value.includes(row.getValue(id))
+    },
   },
   {
     accessorKey: "status",
@@ -123,6 +126,9 @@ export const columns: ColumnDef<Customer>[] = [
                 {status}
             </Badge>
         )
+    },
+    filterFn: (row, id, value) => {
+        return value.includes(row.getValue(id))
     },
   },
   {

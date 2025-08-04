@@ -1,11 +1,13 @@
 
 'use client';
 
+import { useState } from 'react';
 import DashboardLayout from '@/components/layout/dashboard-layout';
 import { CustomerTable } from '@/components/customers/customer-table';
 import { Customer } from '@/components/customers/columns';
+import { AddCustomerForm } from '@/components/customers/add-customer-form';
 
-const customerData: Customer[] = [
+const initialCustomerData: Customer[] = [
     {
         id: "CUST-001",
         name: "John Doe",
@@ -89,13 +91,25 @@ const customerData: Customer[] = [
 ];
 
 export default function CustomersPage() {
+    const [customers, setCustomers] = useState<Customer[]>(initialCustomerData);
+
+    const addCustomer = (customer: Omit<Customer, 'id'>) => {
+        const newCustomer: Customer = {
+            id: `CUST-${String(customers.length + 1).padStart(3, '0')}`,
+            ...customer
+        };
+        setCustomers(prevCustomers => [newCustomer, ...prevCustomers]);
+    }
+
   return (
     <DashboardLayout
       title="Customers"
       subtitle="Here's a list of your customers."
     >
         <div className="rounded-3xl border bg-card text-card-foreground shadow-sm">
-            <CustomerTable data={customerData} />
+            <CustomerTable data={customers}>
+                <AddCustomerForm onAddCustomer={addCustomer} />
+            </CustomerTable>
         </div>
     </DashboardLayout>
   );
