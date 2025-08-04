@@ -3,7 +3,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { Bell, Menu, Home, FileText, Table, Users, ShieldAlert, Settings } from 'lucide-react';
 import {
   DropdownMenu,
@@ -12,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { cn } from '@/lib/utils';
+import { NotificationModal } from './notification-modal';
 
 const menuItems = [
     { name: 'Dashboard', href: '/', icon: Home },
@@ -49,17 +49,14 @@ export function Header({
       </div>
 
       <div className="flex items-center gap-2">
-        <Button variant="outline" size="icon" className="rounded-full bg-card h-12 w-12">
-          <Bell className="h-6 w-6 text-muted-foreground" />
-          <span className="sr-only">Notifications</span>
-        </Button>
+        <NotificationModal />
         <div className="lg:hidden">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon" className="rounded-full bg-card h-12 w-12">
+                    <button className="rounded-full bg-card h-12 w-12 flex items-center justify-center border">
                         <Menu className="h-6 w-6 text-muted-foreground" />
                         <span className="sr-only">Open menu</span>
-                    </Button>
+                    </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     {menuItems.map((item) => (
