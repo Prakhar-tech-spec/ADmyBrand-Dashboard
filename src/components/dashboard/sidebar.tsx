@@ -45,7 +45,7 @@ export function Sidebar() {
             <Menu />
         </Button>
       </div>
-      <nav className="flex-1 space-y-1 py-4">
+      <nav className="flex-1 py-4">
         {menuItems.map((item, index) => (
           <Link
             key={item.name}
