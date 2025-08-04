@@ -1,3 +1,4 @@
+
 'use client';
 
 import { MoreHorizontal } from 'lucide-react';
@@ -53,7 +54,7 @@ export function IncomeChart() {
       </CardHeader>
       <CardContent className="h-48">
         <ChartContainer config={chartConfig} className="w-full h-full">
-            <BarChart accessibilityLayer data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 0 }}>
+            <BarChart accessibilityLayer data={chartData} margin={{ top: 10, right: 0, left: 0, bottom: 10 }}>
                 <CartesianGrid vertical={false} strokeDasharray="3 3" />
                 <XAxis
                 dataKey="month"
