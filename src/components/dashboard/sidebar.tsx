@@ -45,28 +45,33 @@ export function Sidebar() {
             <Menu />
         </Button>
       </div>
-      <nav className="flex-1 py-4">
-        {menuItems.map((item, index) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className={cn(
-              'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium',
-              index === 0
-                ? 'bg-primary-foreground/10 text-primary-foreground'
-                : 'text-gray-300 hover:bg-primary-foreground/10'
-            )}
-          >
-            <div className={cn(
-                "p-1.5 rounded-full flex items-center justify-center h-8 w-8",
-                index === 0 ? "bg-primary-foreground/20" : "bg-primary-foreground/10"
-            )}>
-                <item.icon className="h-5 w-5" />
-            </div>
-            {item.name}
-          </Link>
-        ))}
-        <div className="pt-1">
+      <nav className="flex-1 py-4 flex flex-col gap-2">
+        <Card className="bg-transparent border-none">
+          <CardContent className="p-1">
+            {menuItems.map((item, index) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={cn(
+                  'flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium',
+                  index === 0
+                    ? 'bg-primary-foreground/10 text-primary-foreground'
+                    : 'text-gray-300 hover:bg-primary-foreground/10'
+                )}
+              >
+                <div className={cn(
+                    "p-1.5 rounded-full flex items-center justify-center h-8 w-8",
+                    index === 0 ? "bg-primary-foreground/20" : "bg-primary-foreground/10"
+                )}>
+                    <item.icon className="h-5 w-5" />
+                </div>
+                {item.name}
+              </Link>
+            ))}
+          </CardContent>
+        </Card>
+        
+        <div className="px-1">
             <Button variant={'ghost'} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-gray-300 hover:bg-primary-foreground/10 w-full justify-start h-12 border-dashed border-2 border-primary-foreground/20">
                 <div className="p-1.5 rounded-lg bg-primary-foreground/10">
                     <GridIcon className='h-5 w-5' />
