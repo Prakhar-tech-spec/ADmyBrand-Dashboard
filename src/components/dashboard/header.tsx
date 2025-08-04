@@ -4,7 +4,7 @@
 import { Bell, Command, Mail, Search, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Sidebar } from './sidebar';
 
 export function Header() {
@@ -19,6 +19,9 @@ export function Header() {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="flex flex-col p-0 w-72">
+                    <SheetHeader>
+                        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                    </SheetHeader>
                     <Sidebar />
                 </SheetContent>
             </Sheet>
