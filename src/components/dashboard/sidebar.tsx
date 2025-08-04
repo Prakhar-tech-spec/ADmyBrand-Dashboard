@@ -104,7 +104,7 @@ export function Sidebar() {
           </CardContent>
         </Card>
 
-        <Card className="bg-primary-foreground/5 border-none">
+        <Card className="bg-gradient-to-b from-sidebar-card-start to-sidebar-card-end border-none rounded-3xl">
             <CardContent className="p-3">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
