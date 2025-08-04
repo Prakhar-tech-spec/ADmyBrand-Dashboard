@@ -59,17 +59,23 @@ export type GenerateForecastOutput = z.infer<
   typeof GenerateForecastOutputSchema
 >;
 
+const ForecastPromptInputSchema = z.object({
+    campaignsString: z.string(),
+    customersString: z.string(),
+    alertsString: z.string(),
+});
+
 const forecastPrompt = ai.definePrompt({
   name: 'generateForecastPrompt',
-  input: { schema: GenerateForecastInputSchema },
+  input: { schema: ForecastPromptInputSchema },
   output: { schema: GenerateForecastOutputSchema },
   prompt: `You are a forecasting expert for a digital advertising agency.
   Your task is to analyze the provided marketing data and generate a forecast for the upcoming period.
 
   Analyze the following data:
-  - Campaign Performance: {{jsonStringify campaigns}}
-  - Customer Data: {{jsonStringify customers}}
-  - Recent Alerts: {{jsonStringify alerts}}
+  - Campaign Performance: {{{campaignsString}}}
+  - Customer Data: {{{customersString}}}
+  - Recent Alerts: {{{alertsString}}}
 
   Based on this data, provide a concise forecast. The forecast should include:
   1. A short, catchy title.
@@ -87,7 +93,11 @@ const generateForecastFlow = ai.defineFlow(
     outputSchema: GenerateForecastOutputSchema,
   },
   async (input) => {
-    const { output } = await forecastPrompt(input);
+    const { output } = await forecastPrompt({
+        campaignsString: JSON.stringify(input.campaigns),
+        customersString: JSON.stringify(input.customers),
+        alertsString: JSON.stringify(input.alerts),
+    });
     return output!;
   }
 );
