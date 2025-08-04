@@ -21,7 +21,7 @@ import { RadialChart } from '../icons/radial-chart';
 const menuItems = [
   { name: 'Dashboard', href: '/', icon: Home },
   { name: 'Reports', href: '/reports', icon: FileText },
-  { name: 'Data Table', href: '#', icon: Table },
+  { name: 'Data Table', href: '/datatable', icon: Table },
   { name: 'Customers', href: '#', icon: Users },
   { name: 'Alerts & Logs', href: '#', icon: ShieldAlert },
 ];
