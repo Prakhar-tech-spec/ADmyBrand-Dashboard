@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import DashboardLayout from '@/components/layout/dashboard-layout';
@@ -7,15 +8,16 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/hooks/use-toast';
+import { useAppToast } from '@/context/toaster-context';
 
 export default function SettingsPage() {
-    const { toast } = useToast();
+    const { toasterRef } = useAppToast();
 
     const handleSaveChanges = () => {
-        toast({
+        toasterRef.current?.show({
             title: "Settings Saved",
-            description: "Your changes have been saved successfully.",
+            message: "Your changes have been saved successfully.",
+            variant: "success",
         });
     };
 

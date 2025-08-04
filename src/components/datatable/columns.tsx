@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useAppToast } from "@/context/toaster-context";
 
 export type Campaign = {
   campaignName: string
@@ -25,6 +26,39 @@ export type Campaign = {
   conversions: number
   startDate: string
 }
+
+const ActionsCell = ({ row }: { row: any }) => {
+    const { toasterRef } = useAppToast();
+    const campaign = row.original;
+  
+    const copyCampaignName = () => {
+      navigator.clipboard.writeText(campaign.campaignName);
+      toasterRef.current?.show({
+        title: "Copied to Clipboard",
+        message: "Campaign name copied successfully.",
+        variant: "success",
+      });
+    };
+  
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+            </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem onClick={copyCampaignName}>
+                Copy campaign name
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>View details</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    );
+};
 
 export const columns: ColumnDef<Campaign>[] = [
     {
@@ -122,29 +156,6 @@ export const columns: ColumnDef<Campaign>[] = [
   {
     id: "actions",
     enableHiding: false,
-    cell: ({ row }) => {
-      const campaign = row.original
- 
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(campaign.campaignName)}
-            >
-              Copy campaign name
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
-    },
+    cell: ActionsCell,
   },
 ]

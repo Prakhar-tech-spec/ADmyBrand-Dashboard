@@ -10,12 +10,16 @@ A modern, responsive analytics dashboard built for digital marketing analytics, 
 - 🌗 Light/Dark Mode toggle
 - 🎨 Stunning UI with custom brown/grey palette & micro animations
 - 🧠 Built with mock data and Firebase Hosting
+- 🔔 Feature-rich toast notifications for user feedback
+- 📄 PDF report generation with real-time progress
 
 ## 📁 Tech Stack
 
 - Framework: **Next.js 15+ (App Router)**
-- UI: **Tailwind CSS + Custom Theme**
+- UI: **Tailwind CSS + shadcn/ui + Custom Theme**
 - Charts: **Recharts**
+- Toasts: **Sonner**
+- Animations: **Framer Motion**
 - Hosting: **Firebase**
 - Version Control: **GitHub**
 
@@ -35,3 +39,5 @@ npm install
 
 # Run locally
 npm run dev
+
+```

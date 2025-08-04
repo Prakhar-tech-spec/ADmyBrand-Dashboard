@@ -1,17 +1,17 @@
-import type {Metadata} from 'next';
-import './globals.css';
-import { Toaster } from '@/components/ui/toaster';
 
-export const metadata: Metadata = {
-  title: 'ADmyBRAND',
-  description: 'A modern finance dashboard.',
-};
+'use client'
+
+import './globals.css';
+import { useRef } from 'react';
+import Toaster, { ToasterRef } from '@/components/ui/toast';
+import { ToasterContext } from '@/context/toaster-context';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const toasterRef = useRef<ToasterRef>(null);
   return (
     <html lang="en" className="h-full">
       <head>
@@ -20,8 +20,10 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased h-full">
-        {children}
-        <Toaster />
+        <ToasterContext.Provider value={{ toasterRef }}>
+            {children}
+        </ToasterContext.Provider>
+        <Toaster ref={toasterRef} />
       </body>
     </html>
   );

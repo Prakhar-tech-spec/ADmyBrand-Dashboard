@@ -1,9 +1,10 @@
 
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import html2canvas from 'html2canvas';
 import { Campaign } from '@/components/datatable/columns';
-import { toast as toastFn } from '@/hooks/use-toast';
+import { ToasterRef } from '@/components/ui/toast';
 import { Progress } from '@/components/ui/progress';
 import React from 'react';
 
@@ -27,28 +28,35 @@ const captureChartAsImage = async (elementId: string): Promise<string> => {
     return canvas.toDataURL('image/png', 0.9);
 };
 
-export const generatePdf = async (campaignData: Campaign[], toast: typeof toastFn) => {
-    const { id: toastId, update } = toast({
-        title: "Generating Report...",
-        description: React.createElement('div', null, 
-            React.createElement('p', null, 'Initializing...'),
-            React.createElement(Progress, { value: 0, className: "mt-2" })
-        ),
-        className: 'swipe-disabled',
-    });
+export const generatePdf = async (campaignData: Campaign[], toasterRef: React.RefObject<ToasterRef>) => {
+    
+    let toastId: string | number | undefined;
 
-    try {
-        const updateProgress = (progress: number, message: string) => {
-            update({
-                id: toastId,
+    const updateProgress = (progress: number, message: string) => {
+        const toastContent = (
+            <div>
+                <p>{message}</p>
+                <Progress value={progress} className="mt-2" />
+            </div>
+        );
+
+        if (toastId) {
+            toasterRef.current?.update(toastId, {
                 title: "Generating Report...",
-                description: React.createElement('div', null, 
-                    React.createElement('p', null, message),
-                    React.createElement(Progress, { value: progress, className: "mt-2" })
-                ),
-                className: 'swipe-disabled',
+                message: toastContent,
+                duration: 999999
             });
-        };
+        } else {
+            toastId = toasterRef.current?.show({
+                title: "Generating Report...",
+                message: toastContent,
+                duration: 999999
+            });
+        }
+    };
+    
+    try {
+        updateProgress(0, 'Initializing...');
         
         const pdf = new jsPDF('p', 'mm', 'a4');
         const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -122,25 +130,23 @@ export const generatePdf = async (campaignData: Campaign[], toast: typeof toastF
 
         updateProgress(100, 'Download starting...');
         pdf.save('marketing-report.pdf');
+        
+        if(toastId) toasterRef.current?.dismiss(toastId);
 
-        update({
-            id: toastId,
-            title: "✅ Report Generated",
-            description: React.createElement('div', null, 
-                React.createElement('p', null, 'Your report has been downloaded.'),
-                React.createElement(Progress, { value: 100, className: "mt-2", indicatorClassName: "bg-highlight-green" })
-            ),
-            className: '', // Re-enable swipe
+        toasterRef.current?.show({
+            title: "Report Generated",
+            message: "Your report has been downloaded.",
+            variant: "success",
         });
+
 
     } catch (error) {
         console.error("Failed to generate PDF:", error);
-        update({
-            id: toastId,
-            variant: 'destructive',
-            title: "❌ Error Generating Report",
-            description: "There was a problem generating the PDF. Please try again.",
-            className: '', // Re-enable swipe
+        if(toastId) toasterRef.current?.dismiss(toastId);
+        toasterRef.current?.show({
+            title: "Error Generating Report",
+            message: "There was a problem generating the PDF. Please try again.",
+            variant: "error",
         });
     }
 };

@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Download } from 'lucide-react';
@@ -11,7 +12,7 @@ import { CustomerSegmentationChart } from '@/components/reports/customer-segment
 import { Button } from '@/components/ui/button';
 import { generatePdf } from '@/lib/pdf-generator';
 import { Campaign } from '@/components/datatable/columns';
-import { useToast } from '@/hooks/use-toast';
+import { useAppToast } from '@/context/toaster-context';
 
 const campaignData: Campaign[] = [
     {
@@ -107,10 +108,10 @@ const campaignData: Campaign[] = [
   ];
 
 export default function ReportsPage() {
-  const { toast } = useToast();
+  const { toasterRef } = useAppToast();
 
   const handleDownload = () => {
-    generatePdf(campaignData, toast);
+    generatePdf(campaignData, toasterRef);
   }
 
   return (

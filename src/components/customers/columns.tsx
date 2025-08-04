@@ -16,6 +16,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
+import { useAppToast } from "@/context/toaster-context";
 
 export type Customer = {
   id: string
@@ -26,6 +27,40 @@ export type Customer = {
   status: "Active" | "Inactive"
   createdAt: string
 }
+
+const ActionsCell = ({ row }: { row: any }) => {
+    const { toasterRef } = useAppToast();
+    const customer = row.original;
+  
+    const copyId = () => {
+      navigator.clipboard.writeText(customer.id);
+      toasterRef.current?.show({
+        title: "Copied to Clipboard",
+        message: "Customer ID copied successfully.",
+        variant: "success",
+      });
+    };
+  
+    return (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="h-8 w-8 p-0">
+            <span className="sr-only">Open menu</span>
+            <MoreHorizontal className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+          <DropdownMenuItem onClick={copyId}>
+            Copy customer ID
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Edit customer</DropdownMenuItem>
+          <DropdownMenuItem>View details</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    );
+  };
 
 export const columns: ColumnDef<Customer>[] = [
   {
@@ -149,29 +184,6 @@ export const columns: ColumnDef<Customer>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const customer = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(customer.id)}
-            >
-              Copy customer ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit customer</DropdownMenuItem>
-            <DropdownMenuItem>View details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
+    cell: ActionsCell
   },
 ];

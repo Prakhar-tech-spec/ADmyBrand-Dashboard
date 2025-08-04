@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Plus, Trash2 } from 'lucide-react';
+import { useAppToast } from '@/context/toaster-context';
 
 type Note = {
   id: number;
@@ -26,6 +27,7 @@ export function NotesCard() {
     { id: 3, text: 'Call John about the new project.' },
   ]);
   const [newNote, setNewNote] = useState('');
+  const { toasterRef } = useAppToast();
 
   const handleAddNote = () => {
     if (newNote.trim() !== '') {
@@ -35,7 +37,24 @@ export function NotesCard() {
   };
 
   const handleDeleteNote = (id: number) => {
-    setNotes(notes.filter((note) => note.id !== id));
+    const noteToDelete = notes.find((note) => note.id === id);
+    if (!noteToDelete) return;
+
+    const remainingNotes = notes.filter((note) => note.id !== id);
+    setNotes(remainingNotes);
+
+    toasterRef.current?.show({
+        title: "Note Deleted",
+        message: "The note has been successfully deleted.",
+        variant: "success",
+        actions: {
+            label: "Undo",
+            onClick: () => {
+                setNotes(notes);
+            },
+            variant: "outline",
+        }
+    })
   };
 
   return (

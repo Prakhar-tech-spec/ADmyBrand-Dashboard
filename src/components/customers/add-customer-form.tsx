@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import { useState } from 'react';
@@ -43,10 +44,10 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { useToast } from "@/hooks/use-toast";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Customer } from './columns';
 import { cn } from '@/lib/utils';
+import { useAppToast } from '@/context/toaster-context';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -179,15 +180,16 @@ function CustomerForm({ className, onAddCustomer }: { className?: string; onAddC
 
 export function AddCustomerForm({ onAddCustomer }: AddCustomerFormProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const { toast } = useToast();
+  const { toasterRef } = useAppToast();
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const handleAddCustomer = (values: z.infer<typeof formSchema>) => {
     onAddCustomer(values);
     setIsOpen(false);
-    toast({
+    toasterRef.current?.show({
         title: "Customer Added",
-        description: `${values.name} has been successfully added.`,
+        message: `${values.name} has been successfully added.`,
+        variant: "success",
     })
   }
 
