@@ -70,75 +70,77 @@ export function AlertsTable({ data }: AlertsTableProps) {
 
   return (
     <div className="w-full">
-      <div className="flex items-center p-4 gap-2">
+      <div className="flex flex-col md:flex-row items-center p-4 gap-2">
         <Input
           placeholder="Filter messages..."
           value={(table.getColumn("message")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("message")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="w-full md:max-w-sm"
         />
-        <DropdownMenu>
+        <div className="flex w-full md:w-auto gap-2 justify-end">
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full md:w-auto">
+                        <Filter className="mr-2 h-4 w-4" />
+                        Severity
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuLabel>Filter by Severity</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {["Info", "Warning", "Error", "Critical"].map((severity) => (
+                        <DropdownMenuCheckboxItem
+                            key={severity}
+                            className="capitalize"
+                            checked={
+                                (table.getColumn("severity")?.getFilterValue() as string[] || []).includes(severity)
+                            }
+                            onCheckedChange={(value) => {
+                                const currentFilter = table.getColumn("severity")?.getFilterValue() as string[] || [];
+                                if (value) {
+                                    table.getColumn("severity")?.setFilterValue([...currentFilter, severity]);
+                                } else {
+                                    table.getColumn("severity")?.setFilterValue(
+                                        currentFilter.filter((s) => s !== severity)
+                                    );
+                                }
+                            }}
+                        >
+                            {severity}
+                        </DropdownMenuCheckboxItem>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+
+            <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                    <Filter className="mr-2 h-4 w-4" />
-                    Severity
+                <Button variant="outline" className="w-full md:w-auto">
+                Columns <ChevronDown className="ml-2 h-4 w-4" />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-                <DropdownMenuLabel>Filter by Severity</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {["Info", "Warning", "Error", "Critical"].map((severity) => (
-                     <DropdownMenuCheckboxItem
-                        key={severity}
+            <DropdownMenuContent align="end">
+                {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                    return (
+                    <DropdownMenuCheckboxItem
+                        key={column.id}
                         className="capitalize"
-                        checked={
-                            (table.getColumn("severity")?.getFilterValue() as string[] || []).includes(severity)
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
                         }
-                        onCheckedChange={(value) => {
-                            const currentFilter = table.getColumn("severity")?.getFilterValue() as string[] || [];
-                            if (value) {
-                                table.getColumn("severity")?.setFilterValue([...currentFilter, severity]);
-                            } else {
-                                table.getColumn("severity")?.setFilterValue(
-                                    currentFilter.filter((s) => s !== severity)
-                                );
-                            }
-                        }}
-                     >
-                        {severity}
-                     </DropdownMenuCheckboxItem>
-                ))}
+                    >
+                        {column.id}
+                    </DropdownMenuCheckboxItem>
+                    )
+                })}
             </DropdownMenuContent>
-        </DropdownMenu>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+            </DropdownMenu>
+        </div>
       </div>
       <div className="px-4">
         <Table>
