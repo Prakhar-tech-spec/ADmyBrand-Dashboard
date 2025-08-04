@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Bell, Menu, Home, FileText, Table, Users, ShieldAlert } from 'lucide-react';
 import {
@@ -9,9 +10,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-  DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
-import { Sidebar } from './sidebar';
+import { cn } from '@/lib/utils';
 
 const menuItems = [
     { name: 'Dashboard', href: '/', icon: Home },
@@ -30,6 +30,7 @@ export function Header({
   title = "You're back!",
   subtitle = 'Let’s go.',
 }: HeaderProps) {
+  const pathname = usePathname();
 
   return (
     <header className="flex h-24 items-center justify-between px-4 md:px-6 lg:px-8 pt-8">
@@ -61,7 +62,11 @@ export function Header({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     {menuItems.map((item) => (
-                        <DropdownMenuItem key={item.name} asChild>
+                        <DropdownMenuItem
+                            key={item.name}
+                            asChild
+                            className={cn(pathname === item.href && "bg-accent")}
+                        >
                             <Link href={item.href} className="flex items-center gap-2">
                                 <item.icon className="h-4 w-4" />
                                 <span>{item.name}</span>
