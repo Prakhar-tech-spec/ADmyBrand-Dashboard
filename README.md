@@ -1,5 +1,37 @@
-# Firebase Studio
+# ADmyBRAND Dashboard 🚀
 
-This is a NextJS starter in Firebase Studio.
+A modern, responsive analytics dashboard built for digital marketing analytics, powered by **Next.js 15+** and **Firebase**.
 
-To get started, take a look at src/app/page.tsx.
+## 🔥 Features
+
+- 📊 Overview with key marketing metrics (Revenue, Users, Conversions, Growth)
+- 📈 Interactive Charts (Line, Bar, Donut – Recharts)
+- 📋 Data Table with sorting, filtering & pagination
+- 🌗 Light/Dark Mode toggle
+- 🎨 Stunning UI with custom brown/grey palette & micro animations
+- 🧠 Built with mock data and Firebase Hosting
+
+## 📁 Tech Stack
+
+- Framework: **Next.js 15+ (App Router)**
+- UI: **Tailwind CSS + Custom Theme**
+- Charts: **Recharts**
+- Hosting: **Firebase**
+- Version Control: **GitHub**
+
+## 📸 Screenshots
+
+> Add a few if you can. Firebase Studio can even export PNGs.
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repository
+git clone https://github.com/Prakhar-tech-spec/ADmyBrand-Dashboard.git
+cd ADmyBrand-Dashboard
+
+# Install dependencies
+npm install
+
+# Run locally
+npm run dev
