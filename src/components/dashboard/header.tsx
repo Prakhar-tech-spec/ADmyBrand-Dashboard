@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { PayflowLogo } from '../icons/payflow-logo';
+import { ADmyBRANDLogo } from '../icons/admybrand-logo';
 
 export function Header() {
   return (
@@ -10,8 +10,8 @@ export function Header() {
       {/* Mobile and Tablet view */}
       <div className="flex items-center gap-2 lg:hidden">
         <Link href="#" className="flex items-center gap-2 text-xl font-semibold text-primary">
-          <PayflowLogo className="h-8 w-8" />
-          <span className="text-2xl">payflow</span>
+          <ADmyBRANDLogo className="h-8 w-8" />
+          <span className="text-2xl">ADmyBRAND</span>
         </Link>
       </div>
 

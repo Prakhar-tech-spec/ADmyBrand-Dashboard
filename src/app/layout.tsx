@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Payflow',
+  title: 'ADmyBRAND',
   description: 'A modern finance dashboard.',
 };
 
