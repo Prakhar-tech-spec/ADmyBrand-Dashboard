@@ -27,6 +27,10 @@ export default {
           start: '#2F2A29',
           end: '#242120',
         },
+        'balance-card-shiny': {
+          start: '#4A4443',
+          end: '#242120',
+        },
         'highlight-green': '#00C48C',
         'highlight-red': '#FE5B5B',
         background: 'hsl(var(--background))',
