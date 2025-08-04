@@ -14,31 +14,33 @@ export default function DashboardPage() {
   return (
     <div className="flex min-h-screen w-full bg-primary font-sans">
       <Sidebar />
-      <div className="flex flex-1 flex-col bg-background rounded-l-3xl">
-        <Header />
-        <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
-          <div className="grid grid-cols-12 gap-6">
-            <div className="col-span-12 xl:col-span-4">
-              <div className="space-y-6">
-                <BalanceCard />
-                <ContactsCard />
-                 <Button variant="outline" className={cn("w-full h-14 rounded-2xl bg-card font-semibold text-secondary-foreground")}>
-                    <GridIcon className="mr-2" />
-                    Add or Manage widgets
-                </Button>
-              </div>
-            </div>
-            <div className="col-span-12 xl:col-span-8">
-              <TransactionsTable />
-            </div>
+      <div className="flex flex-1 p-4">
+        <div className="flex flex-1 flex-col bg-background rounded-3xl">
+            <Header />
+            <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
+            <div className="grid grid-cols-12 gap-6">
+                <div className="col-span-12 xl:col-span-4">
+                <div className="space-y-6">
+                    <BalanceCard />
+                    <ContactsCard />
+                    <Button variant="outline" className={cn("w-full h-14 rounded-2xl bg-card font-semibold text-secondary-foreground")}>
+                        <GridIcon className="mr-2" />
+                        Add or Manage widgets
+                    </Button>
+                </div>
+                </div>
+                <div className="col-span-12 xl:col-span-8">
+                <TransactionsTable />
+                </div>
 
-            <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <ExpensesChart />
-                <IncomeChart />
-                <ExchangeCard />
+                <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <ExpensesChart />
+                    <IncomeChart />
+                    <ExchangeCard />
+                </div>
             </div>
-          </div>
-        </main>
+            </main>
+        </div>
       </div>
     </div>
   );
