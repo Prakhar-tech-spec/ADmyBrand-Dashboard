@@ -23,6 +23,8 @@ import {
 type BalanceCardProps = {
     title?: string;
     showDropdown?: boolean;
+    value?: string;
+    label?: string;
 }
 
 const currencyIcons: { [key: string]: React.ComponentType<{ className?: string }> } = {
@@ -39,7 +41,7 @@ const currencyData = {
 
 const baseUsdAmount = 18248.44;
 
-export function BalanceCard({ title = "Revenue", showDropdown = false }: BalanceCardProps) {
+export function BalanceCard({ title = "Revenue", showDropdown = false, value, label = "Available Funds" }: BalanceCardProps) {
   const [selectedCurrency, setSelectedCurrency] = useState('usd');
   const CurrencyIcon = currencyIcons[selectedCurrency];
 
@@ -48,6 +50,9 @@ export function BalanceCard({ title = "Revenue", showDropdown = false }: Balance
   };
 
   const formattedBalance = useMemo(() => {
+    if (value) {
+        return { symbol: '', integer: value, decimal: '' };
+    }
     const { symbol, rate } = currencyData[selectedCurrency as keyof typeof currencyData];
     const convertedAmount = baseUsdAmount * rate;
     const parts = convertedAmount.toLocaleString('en-US', {
@@ -59,7 +64,7 @@ export function BalanceCard({ title = "Revenue", showDropdown = false }: Balance
         integer: parts[0],
         decimal: parts[1]
     };
-  }, [selectedCurrency]);
+  }, [selectedCurrency, value]);
 
 
   return (
@@ -92,9 +97,10 @@ export function BalanceCard({ title = "Revenue", showDropdown = false }: Balance
       <CardContent className="p-0">
         <Card className='rounded-2xl'>
             <CardContent className='p-6'>
-                <div className="text-sm text-secondary-foreground">Available Funds</div>
+                <div className="text-sm text-secondary-foreground">{label}</div>
                 <div className="text-4xl font-bold text-primary mt-1 font-numbers">
-                    {formattedBalance.symbol}{formattedBalance.integer}<span className='text-muted-foreground'>.{formattedBalance.decimal}</span>
+                    {formattedBalance.symbol}{formattedBalance.integer}
+                    {formattedBalance.decimal && <span className='text-muted-foreground'>.{formattedBalance.decimal}</span>}
                 </div>
             </CardContent>
         </Card>

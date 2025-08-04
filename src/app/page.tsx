@@ -22,7 +22,7 @@ export default function DashboardPage() {
             <BalanceCard showDropdown={true}/>
             <GrowthCard />
             <GrowthCard title="Conversions" description="vs last month" label="Conversion Rate" value="+2.6%" />
-            <BalanceCard title="Users" />
+            <BalanceCard title="Users" value="1,234" label="Active Users" />
           </div>
         </div>
         <div className="lg:col-span-1">
