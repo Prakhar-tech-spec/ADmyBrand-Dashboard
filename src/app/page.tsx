@@ -48,7 +48,7 @@ export default function DashboardPage() {
         <div className="hidden lg:flex">
           <Sidebar />
         </div>
-        <div className="flex flex-1 flex-col lg:p-2 pt-4 lg:pt-2 overflow-hidden">
+        <div className="flex flex-1 flex-col lg:p-2 lg:pt-2 overflow-hidden">
           <div className="flex flex-1 flex-col bg-background lg:rounded-3xl overflow-auto">
               <Header />
               <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
