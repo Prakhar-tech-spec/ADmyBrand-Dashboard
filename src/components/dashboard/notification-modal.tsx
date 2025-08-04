@@ -1,6 +1,7 @@
 
 'use client'
 
+import { useState } from 'react';
 import { Bell } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,6 +12,15 @@ import {
   DialogTrigger,
   DialogDescription,
 } from '@/components/ui/dialog';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+  DrawerDescription,
+} from '@/components/ui/drawer';
+import { useMediaQuery } from '@/hooks/use-media-query';
 import { NotificationsIcon } from '../icons/notifications-icon';
 
 const notifications = [
@@ -36,23 +46,8 @@ const notifications = [
     },
 ];
 
-export function NotificationModal() {
-  return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <div className="relative">
-          <Button variant="outline" size="icon" className="rounded-full bg-card h-12 w-12">
-            <Bell className="h-6 w-6 text-muted-foreground" />
-            <span className="sr-only">Notifications</span>
-          </Button>
-          <div className="absolute top-2 right-2.5 h-2.5 w-2.5 rounded-full bg-red-500" />
-        </div>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Notifications</DialogTitle>
-          <DialogDescription>You have {notifications.length} new messages.</DialogDescription>
-        </DialogHeader>
+function NotificationList() {
+    return (
         <div className="grid gap-4 py-4">
             {notifications.map((notification, index) => (
                 <div key={index} className="flex items-start gap-4">
@@ -67,7 +62,54 @@ export function NotificationModal() {
                 </div>
             ))}
         </div>
-      </DialogContent>
-    </Dialog>
+    )
+}
+
+export function NotificationModal() {
+    const [isOpen, setIsOpen] = useState(false);
+    const isDesktop = useMediaQuery("(min-width: 768px)");
+
+    const triggerButton = (
+        <div className="relative">
+            <Button variant="outline" size="icon" className="rounded-full bg-card h-12 w-12">
+            <Bell className="h-6 w-6 text-muted-foreground" />
+            <span className="sr-only">Notifications</span>
+            </Button>
+            <div className="absolute top-2 right-2.5 h-2.5 w-2.5 rounded-full bg-red-500" />
+        </div>
+    );
+
+    if (isDesktop) {
+        return (
+            <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+                {triggerButton}
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                <DialogTitle>Notifications</DialogTitle>
+                <DialogDescription>You have {notifications.length} new messages.</DialogDescription>
+                </DialogHeader>
+                <NotificationList />
+            </DialogContent>
+            </Dialog>
+        );
+    }
+
+  return (
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
+      <DrawerTrigger asChild>
+        {triggerButton}
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader className="text-left">
+          <DrawerTitle>Notifications</DrawerTitle>
+          <DrawerDescription>You have {notifications.length} new messages.</DrawerDescription>
+        </DrawerHeader>
+        <div className="px-4">
+            <NotificationList />
+        </div>
+      </DrawerContent>
+    </Drawer>
   );
 }
