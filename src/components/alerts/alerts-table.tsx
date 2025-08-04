@@ -35,6 +35,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Alert, columns } from "./columns"
+import { DateRangePicker } from "../ui/date-range-picker"
 
 type AlertsTableProps = {
     data: Alert[];
@@ -79,7 +80,8 @@ export function AlertsTable({ data }: AlertsTableProps) {
           }
           className="w-full md:max-w-sm"
         />
-        <div className="flex w-full md:w-auto gap-2 justify-end">
+        <DateRangePicker className="w-full md:w-auto" />
+        <div className="flex w-full md:w-auto gap-2 justify-end md:ml-auto">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="w-full md:w-auto">

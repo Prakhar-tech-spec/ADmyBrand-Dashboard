@@ -36,6 +36,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Campaign, columns } from "./columns"
+import { DateRangePicker } from "../ui/date-range-picker"
 
 type CampaignPerformanceTableProps = {
     data: Campaign[];
@@ -80,6 +81,7 @@ export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps
           }
           className="w-full md:max-w-sm"
         />
+        <DateRangePicker className="w-full md:w-auto" />
         <div className="flex w-full md:w-auto md:ml-auto gap-2 justify-end">
             <DropdownMenu>
             <DropdownMenuTrigger asChild>
