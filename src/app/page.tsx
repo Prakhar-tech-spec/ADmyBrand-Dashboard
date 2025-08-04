@@ -16,7 +16,7 @@ export default function DashboardPage() {
   return (
     <div className="flex h-screen w-full bg-primary font-sans">
       <Sidebar />
-      <div className="flex flex-1 flex-col p-4 overflow-hidden">
+      <div className="flex flex-1 flex-col p-1 overflow-hidden">
         <div className="flex flex-1 flex-col bg-background rounded-3xl overflow-auto">
             <Header />
             <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
@@ -36,8 +36,22 @@ export default function DashboardPage() {
                 </div>
 
                 <div className="col-span-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <ExpensesChart />
-                  <IncomeChart />
+                  <ChartContainer config={{
+                    expenses: {
+                      label: 'Expenses',
+                      color: 'hsl(var(--chart-1))',
+                    },
+                  }}>
+                    <ExpensesChart />
+                  </ChartContainer>
+                  <ChartContainer config={{
+                    income: {
+                      label: 'Income',
+                      color: 'hsl(var(--chart-2))',
+                    },
+                  }}>
+                    <IncomeChart />
+                  </ChartContainer>
                   <ExchangeCard />
                 </div>
             </div>
