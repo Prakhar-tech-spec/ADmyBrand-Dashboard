@@ -14,6 +14,7 @@ import { BalanceCard } from '@/components/dashboard/balance-card';
 import { ContactsCard } from '@/components/dashboard/contacts-card';
 import { ExchangeCard } from '@/components/dashboard/exchange-card';
 import { ExpensesChart } from '@/components/dashboard/expenses-chart';
+import { Header } from '@/components/dashboard/header';
 import { IncomeChart } from '@/components/dashboard/income-chart';
 import { Sidebar } from '@/components/dashboard/sidebar';
 import { TransactionsTable } from '@/components/dashboard/transactions-table';
@@ -50,6 +51,7 @@ export default function DashboardPage() {
         </div>
         <div className="flex flex-1 flex-col lg:p-4 overflow-hidden">
           <div className="flex flex-1 flex-col bg-background lg:rounded-3xl overflow-auto">
+              <Header />
               <main className="flex-1 space-y-4 p-4 md:p-6 lg:p-8">
               <div className="grid grid-cols-12 gap-6">
                   <div className="col-span-12 xl:col-span-4">
