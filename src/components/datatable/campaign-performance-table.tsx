@@ -71,41 +71,43 @@ export function CampaignPerformanceTable({ data }: CampaignPerformanceTableProps
 
   return (
     <div className="w-full">
-      <div className="flex items-center p-4">
+      <div className="flex flex-col md:flex-row items-center p-4 gap-2">
         <Input
           placeholder="Filter campaigns..."
           value={(table.getColumn("campaignName")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("campaignName")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="w-full md:max-w-sm"
         />
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
-                )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex w-full md:w-auto md:ml-auto gap-2 justify-end">
+            <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="w-full md:w-auto">
+                Columns <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => {
+                    return (
+                    <DropdownMenuCheckboxItem
+                        key={column.id}
+                        className="capitalize"
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                        column.toggleVisibility(!!value)
+                        }
+                    >
+                        {column.id}
+                    </DropdownMenuCheckboxItem>
+                    )
+                })}
+            </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
       </div>
       <div className="px-4">
         <Table>
