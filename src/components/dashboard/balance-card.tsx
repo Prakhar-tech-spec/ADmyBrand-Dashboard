@@ -1,3 +1,4 @@
+
 'use client';
 
 import { ArrowDown, ArrowUp } from 'lucide-react';
@@ -23,7 +24,7 @@ import { ChevronDown } from 'lucide-react';
 
 export function BalanceCard() {
   return (
-    <Card className="shadow-sm rounded-3xl bg-primary text-primary-foreground border-none p-2">
+    <Card className="shadow-sm rounded-3xl bg-gradient-to-b from-sidebar-card-start to-sidebar-card-end text-primary-foreground border-none p-2">
       <CardHeader className="pb-4 pt-4 px-4">
         <div className="flex items-start justify-between">
             <div>
