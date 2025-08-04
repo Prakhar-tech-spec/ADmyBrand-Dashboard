@@ -19,11 +19,12 @@ import {
 import { Separator } from '../ui/separator';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
+import { ChevronDown } from 'lucide-react';
 
 export function BalanceCard() {
   return (
-    <Card className="shadow-sm rounded-3xl bg-primary text-primary-foreground border-none">
-      <CardHeader className="pb-4">
+    <Card className="shadow-sm rounded-3xl bg-primary text-primary-foreground border-none p-2">
+      <CardHeader className="pb-4 pt-4 px-4">
         <div className="flex items-start justify-between">
             <div>
                 <CardTitle className="text-base font-semibold text-primary-foreground">
@@ -32,7 +33,7 @@ export function BalanceCard() {
                 <CardDescription className='text-primary-foreground/70'>Available for use</CardDescription>
             </div>
             <Select defaultValue="usd">
-                <SelectTrigger className="w-auto bg-primary-foreground/10 border-none font-semibold rounded-full h-9 px-3">
+                <SelectTrigger className="w-auto bg-transparent border-none font-semibold rounded-full h-9 px-2 gap-2">
                     <div className="flex items-center gap-2">
                         <USFlagIcon className="h-5 w-5 rounded-full" />
                         <SelectValue />
@@ -45,25 +46,20 @@ export function BalanceCard() {
             </Select>
         </div>
       </CardHeader>
-      <CardContent>
-        <Card className='rounded-3xl'>
-            <CardContent className='p-4'>
+      <CardContent className="p-0">
+        <Card className='rounded-2xl'>
+            <CardContent className='p-6'>
                 <div className="text-sm text-secondary-foreground">Available Funds</div>
                 <div className="text-4xl font-bold text-primary mt-1">
                     $18,248<span className='text-muted-foreground'>.44</span>
                 </div>
-                <div className="mt-4 grid grid-cols-2 items-center gap-2">
-                    <Button variant="ghost" className="w-full justify-start h-12 rounded-xl bg-card font-semibold text-secondary-foreground gap-2">
-                        <div className="p-1 rounded-full border-2 border-secondary">
-                            <ArrowUp className="h-4 w-4" />
-                        </div>
+                <div className="mt-6 space-y-4">
+                    <Button variant="ghost" className="w-auto p-0 h-auto justify-start font-semibold text-secondary-foreground gap-3">
+                        <ArrowUp className="h-4 w-4" />
                         Send
                     </Button>
-                    <Separator orientation='vertical' className='h-6' />
-                    <Button variant="ghost" className="w-full justify-start h-12 rounded-xl bg-card font-semibold text-secondary-foreground gap-2 -ml-10">
-                        <div className="p-1 rounded-full border-2 border-secondary">
-                            <ArrowDown className="h-4 w-4" />
-                        </div>
+                    <Button variant="ghost" className="w-auto p-0 h-auto justify-start font-semibold text-secondary-foreground gap-3">
+                        <ArrowDown className="h-4 w-4" />
                         Request
                     </Button>
                 </div>
