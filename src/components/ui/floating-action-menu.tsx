@@ -30,7 +30,7 @@ return (
   <div className={cn("fixed bottom-8 right-8 z-50", className)}>
     <Button
       onClick={toggleMenu}
-      className="w-16 h-16 rounded-full bg-[#111111e8] hover:bg-[#111111] shadow-[0_0_20px_rgba(0,0,0,0.2)] flex items-center justify-center font-semibold text-base"
+      className="w-14 h-14 rounded-full bg-[#111111e8] hover:bg-[#111111] shadow-[0_0_20px_rgba(0,0,0,0.2)] flex items-center justify-center font-semibold text-sm"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -40,7 +40,7 @@ return (
           exit={{ opacity: 0, rotate: 45, scale: 0.5 }}
           transition={{ duration: 0.2, ease: "easeOut" }}
         >
-          {isOpen ? <X className="w-6 h-6" /> : "Menu"}
+          {isOpen ? <X className="w-5 h-5" /> : "Menu"}
         </motion.div>
       </AnimatePresence>
     </Button>
