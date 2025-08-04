@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type FloatingActionMenuProps = {
@@ -30,20 +30,19 @@ return (
   <div className={cn("fixed bottom-8 right-8 z-50", className)}>
     <Button
       onClick={toggleMenu}
-      className="w-14 h-14 rounded-full bg-[#111111e8] hover:bg-[#111111] shadow-[0_0_20px_rgba(0,0,0,0.2)] "
+      className="w-16 h-16 rounded-full bg-[#111111e8] hover:bg-[#111111] shadow-[0_0_20px_rgba(0,0,0,0.2)] flex items-center justify-center font-semibold text-base"
     >
-      <motion.div
-        animate={{ rotate: isOpen ? 45 : 0 }}
-        transition={{
-          duration: 0.3,
-          ease: "easeInOut",
-          type: "spring",
-          stiffness: 300,
-          damping: 20,
-        }}
-      >
-        <Plus className="w-7 h-7" />
-      </motion.div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isOpen ? "close" : "menu"}
+          initial={{ opacity: 0, rotate: -45, scale: 0.5 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          exit={{ opacity: 0, rotate: 45, scale: 0.5 }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
+        >
+          {isOpen ? <X className="w-6 h-6" /> : "Menu"}
+        </motion.div>
+      </AnimatePresence>
     </Button>
 
     <AnimatePresence>
