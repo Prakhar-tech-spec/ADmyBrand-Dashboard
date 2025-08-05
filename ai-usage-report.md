@@ -1,7 +1,7 @@
 # AI Usage Report
 
 ## 🔧 AI Tools Used
-- **ChatGPT (Pro)** – Code generation, architecture planning, logic assistance
+- **ChatGPT (Pro)* – Code generation, architecture planning, logic assistance
 - **Cursor AI (Pro)** – Inline AI code writing, debugging, UI state logic
 - **GitHub Copilot** – Smart code completion in VSCode
 - **Firebase Studio** – Generated component structure and mock backend logic
